@@ -1,8 +1,11 @@
 import React from 'react'
+import { Button, Text } from './styles'
 
 
-export default function ButtonTransparent () {
+export default function ButtonTransparent ({text,onPress}) {
   return(
-    <div></div>
+    <Button onClick={()=>{}}>
+      <Text>{text}</Text>
+    </Button>
    )
  }

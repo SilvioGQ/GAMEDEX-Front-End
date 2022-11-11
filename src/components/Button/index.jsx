@@ -1,8 +1,11 @@
 import React from 'react'
+import { Text, ButtonContaienr } from './styles'
 
 
-export default function Button () {
+export default function Button ({text, onPress}) {
   return(
-    <div></div>
+    <ButtonContaienr onClick={()=>{}}>
+      <Text>{text}</Text>
+    </ButtonContaienr>
    )
  }
