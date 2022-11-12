@@ -11,6 +11,7 @@ export const FlexRight = styled.div`
     flex: 1;
     background-color: ${Colors.BlackLight};
     padding: 40px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
@@ -25,7 +26,14 @@ export const Logo = styled.img`
     height: 80px;
 `
 
+export const ConsolesImg = styled.img`
+    align-self: flex-end;
+    justify-self: right;
+`
+
 export const FlexLeft = styled.div`
     display: flex;
     flex: 3;
+    flex-direction: column;
+    justify-content: flex-end;
 `;

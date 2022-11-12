@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Colors from '../../resource/Colors'
-export const Button = styled.div`
+export const ButtonContaienr = styled.div`
     cursor: pointer;
     background-color: ${Colors.Purple};
     padding: 32px;
