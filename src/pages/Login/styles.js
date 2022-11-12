@@ -4,6 +4,7 @@ import Colors from '../../resource/Colors';
 export const Container = styled.div`
     display: flex;
     flex: 1;
+    background-color: ${Colors.Black};
 `;
 
 export const FlexRight = styled.div`
@@ -29,6 +30,8 @@ export const Logo = styled.img`
 export const ConsolesImg = styled.img`
     align-self: flex-end;
     justify-self: right;
+`
+export const AnimationImg = styled.img`
 `
 
 export const FlexLeft = styled.div`

@@ -1,5 +1,5 @@
-export default Colors = {
-    "Black" : '#c1c1c1',
+const Colors = {
+    "Black" : '#1C1C1C',
     "Purple" : '#9E00FF',
     "BlackLight" : '2#A2A2A',
     "Gray" : '#5a5a5a',
@@ -9,3 +9,5 @@ export default Colors = {
     "Red" : '#BA0000',
     "Green" : '#00FF38'
 };
+
+export default Colors

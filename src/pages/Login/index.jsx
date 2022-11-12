@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Row } from '../../resource/globalsStyles'
-import { ConsolesImg, Container, FlexLeft, FlexRight, Logo, Title } from './styles'
+import { AnimationImg, ConsolesImg, Container, FlexLeft, FlexRight, Logo, Title } from './styles'
 import LogoImage from '../../assets/logo.png'
 import LoginAnimation from '../../assets/loginAnimation.png'
 import Consoles from '../../assets/consoles.png'
@@ -17,7 +17,7 @@ export default function Login () {
     <Container>
       <FlexLeft>
         <ConsolesImg src={Consoles}/>
-        <img src={LoginAnimation}/>
+        <AnimationImg src={LoginAnimation}/>
 
       </FlexLeft>
       <FlexRight>
