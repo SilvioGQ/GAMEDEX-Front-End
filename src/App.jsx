@@ -12,6 +12,13 @@ import CollectorsProfile from "./pages/CollectionsProfile";
 
 export default function App() {
   return (
-    <Login/>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/jogos" element={<Games />} />
+      <Route path="/jogos/jogo" element={<Game />} />
+      <Route path="/colecionadores" element={<Collectors />} />
+      <Route path="/colecionadores/perfil" element={<CollectorsProfile />} />
+      <Route path="/estatisticas" element={<Statistics />} />
+    </Routes>
   )
 };

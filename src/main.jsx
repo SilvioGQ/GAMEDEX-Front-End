@@ -11,6 +11,9 @@ import './fonts/static/EncodeSans/EncodeSans-Regular.ttf'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <BrowserRouter>
+      <GlobalStyle/>
       <App/>
+    </BrowserRouter>
   </React.StrictMode>
 )
