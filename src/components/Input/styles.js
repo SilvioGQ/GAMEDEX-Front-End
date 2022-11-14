@@ -9,4 +9,5 @@ export const TextInput = styled.input`
     align-self: center;
     transition: all ease 0.3s;
     border-color: ${props => props.hovering ? Colors.White : Colors.GrayLight };
+    margin-bottom: 25px;
 `;

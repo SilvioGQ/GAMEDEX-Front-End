@@ -1,12 +1,12 @@
 import React from 'react'
 import Colors from '../../resource/Colors';
 import { TextInput, } from './styles';
-export default function Input ({value, onChangeText, placeholder,  secureTextEntry, err = false, hoveringInput, setHoveringInput, inputRequired }) {
+export default function Input ({value, onChange, placeholder,  secureTextEntry, err = false, hoveringInput, setHoveringInput, inputRequired }) {
   return (
   <>
     <TextInput 
       borderColor={err ? '#000' : Colors.White}
-      onChangeText={onChangeText}
+      onChange={(e)=>onChange(e.target.value)}
       value={value}
       placeholder={placeholder}
       security={secureTextEntry}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function Dropdown () {
+export default function Header () {
   return(
     <div></div>
    )

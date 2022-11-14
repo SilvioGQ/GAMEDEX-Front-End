@@ -4,7 +4,7 @@ import { Button, Text } from './styles'
 
 export default function ButtonTransparent ({text,onPress}) {
   return(
-    <Button onClick={()=>{}}>
+    <Button onClick={onPress}>
       <Text>{text}</Text>
     </Button>
    )

@@ -7,16 +7,22 @@ import Consoles from '../../assets/consoles.png'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import ButtonTransparent from '../../components/ButtonTransparent'
+import { CreateUser, LoginUser } from '../api'
 
 export default function Login () {
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha,setSenha] = useState('');
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
+  const [hoveringInput,setHoveringInput] = useState(false);
+  const createUser = async()=>{
+    const user = await CreateUser(nome,email,senha);
+    console.log(user)
+  }
   return(
     <Container>
       <FlexLeft>
-        <ConsolesImg src={Consoles}/>
+        <h1 style={{marginLeft:40, marginBottom:50}}>COMECE SUAS COLEÇÃO DE JOGOS AGORA!</h1>
         <AnimationImg src={LoginAnimation}/>
 
       </FlexLeft>
@@ -31,17 +37,25 @@ export default function Login () {
             <Input 
 				  		placeholder="Email"
               value={email}
-              onChangeText={setEmail}
-				  		inputRequired/>
+              onChange={setEmail}
+				  		inputRequired 
+              hovering={hoveringInput}
+              setHoveringInput={setHoveringInput}
+              />
             <Input 							
               value={senha}
-              onChangeText={setSenha}
+              onChange={setSenha}
 				  	  secureTextEntry={true}				
 				  		placeholder="Senha"
-				  		inputRequired/>
+				  		inputRequired
+              hovering={hoveringInput}
+              setHoveringInput={setHoveringInput}
+              />
           </div>
-          <Button text={'ENTRAR'} />
-          <ButtonTransparent text={'CADASTRE-SE'} onPress={()=>setPage(2)}/>
+          <div style={{width:'100%',marginVertical:50}}>
+            <Button text={'ENTRAR'} onPress={async()=>{await LoginUser(email,senha)}}/>
+            <ButtonTransparent text={'CADASTRE-SE'} onPress={()=>setPage(2)}/>
+          </div>
         </>
         :
         <>
@@ -49,22 +63,31 @@ export default function Login () {
         <Input 
             placeholder="Nome"
             value={nome}
-            onChangeText={setNome}
-            inputRequired />
+            onChange={setNome}
+            inputRequired 
+            hovering={hoveringInput}
+            setHoveringInput={setHoveringInput}
+            />
           <Input 
             placeholder="Email"
             value={email}
-            onChangeText={setEmail}
-            inputRequired/>
+            onChange={setEmail}
+            inputRequired
+            hovering={hoveringInput}
+            setHoveringInput={setHoveringInput}/>
           <Input 							
             value={senha}
-            onChangeText={setSenha}
+            onChange={setSenha}
             secureTextEntry={true}				
             placeholder="Senha"
-            inputRequired/>
+            inputRequired
+            hovering={hoveringInput}
+            setHoveringInput={setHoveringInput}/>
         </div>
-        <Button text={'CRIAR CONTA'} />
-        <ButtonTransparent text={'CANCELAR'} onPress={()=>setPage(1)}/>
+        <div style={{width:'100%',marginVertical:50}}>
+          <Button text={'CRIAR CONTA'} onPress={()=>createUser()} />
+          <ButtonTransparent text={'CANCELAR'} onPress={()=>setPage(1)}/>
+        </div>
       </>
         }
       </FlexRight>
