@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from '../../components/Header'
+import { BackgroundLight } from '../../resource/globalsStyles'
 
 
 export default function Statistics () {
   return(
-    <div></div>
+    <>
+      <Header selected={'statistics'} />
+      <BackgroundLight>
+      </BackgroundLight>
+    </>
    )
  }

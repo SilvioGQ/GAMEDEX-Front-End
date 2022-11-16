@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Row } from '../../resource/globalsStyles'
 import { AnimationImg, ConsolesImg, Container, FlexLeft, FlexRight, Logo, Title } from './styles'
 import LogoImage from '../../assets/logo.png'
@@ -8,17 +8,90 @@ import Input from '../../components/Input'
 import Button from '../../components/Button'
 import ButtonTransparent from '../../components/ButtonTransparent'
 import { CreateUser, LoginUser } from '../api'
+import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login () {
+  const { state:userState, dispatch: userDispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [hoveringInput,setHoveringInput] = useState(false);
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha,setSenha] = useState('');
   const [page, setPage] = useState(1);
-  const [hoveringInput,setHoveringInput] = useState(false);
   const createUser = async()=>{
     const user = await CreateUser(nome,email,senha);
-    console.log(user)
+    if(user){
+      userDispatch({
+        type: 'setImg',
+        payload: {
+          img: user.img
+        }
+      });
+      userDispatch({
+        type: "setName",
+        payload: {
+          name: user.name,
+        },
+      });
+      userDispatch({
+        type: "setId",
+        payload: {
+          id: user.id,
+        },
+      });
+      userDispatch({
+        type: "setDataMaster",
+        payload: {
+          is_data_master: user.is_data_master,
+        },
+      });
+      userDispatch({
+        type: "setEmail",
+        payload: {
+          email: user.email,
+        },
+      });
+    }    
   }
+  const loginUser = async()=>{
+    const user = await LoginUser(email,senha);
+    if(user){
+      userDispatch({
+        type: 'setImg',
+        payload: {
+          img: user.img
+        }
+      });
+      userDispatch({
+        type: "setName",
+        payload: {
+          name: user.name,
+        },
+      });
+      userDispatch({
+        type: "setId",
+        payload: {
+          id: user.id,
+        },
+      });
+      userDispatch({
+        type: "setDataMaster",
+        payload: {
+          is_data_master: user.is_data_master,
+        },
+      });
+      userDispatch({
+        type: "setEmail",
+        payload: {
+          email: user.email,
+        },
+      });
+    }    
+    navigate('jogos')
+    console.log('login',user)
+  }
+  console.log(userState)
   return(
     <Container>
       <FlexLeft>
@@ -53,7 +126,7 @@ export default function Login () {
               />
           </div>
           <div style={{width:'100%',marginVertical:50}}>
-            <Button text={'ENTRAR'} onPress={async()=>{await LoginUser(email,senha)}}/>
+            <Button text={'ENTRAR'} onPress={()=>{loginUser()}}/>
             <ButtonTransparent text={'CADASTRE-SE'} onPress={()=>setPage(2)}/>
           </div>
         </>
