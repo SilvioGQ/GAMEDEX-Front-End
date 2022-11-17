@@ -4,7 +4,8 @@ export const Input = styled.input`
     padding: 16px;
     border: 1px solid #fff;
     border-radius: 4px;
-    width: 100%;
+    width: 40vw;
+    height: 25px;
 `;
 
 export const Image = styled.img`
@@ -13,5 +14,4 @@ export const Image = styled.img`
     position: absolute;
     margin-left: 310px;
     margin-top: 10px;
-
 `

@@ -15,7 +15,7 @@ export default function Search ({value, onChange, placeholder,  hoveringInput, s
     onMouseEnter={() => setHoveringInput(true)}
     onMouseOut={() => setHoveringInput(false)}
     />
-    <Image src={Lupa} />
+    {/* <Image src={Lupa} /> */}
     </>
    )
  }

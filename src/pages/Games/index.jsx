@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Dropdown from '../../components/Dropdown'
+import Game from '../../components/Game'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
-import { BackgroundLight } from '../../resource/globalsStyles'
+import { BackgroundLight, ListGames } from '../../resource/globalsStyles'
 import { RowBetween } from './styles'
 
 
@@ -30,6 +31,18 @@ export default function Games () {
       <Dropdown list={CategoryList} selected={categorySelected} setSelected={setCategorySelected}/>
       <Dropdown list={OrderList} selected={orderSelected} setSelected={setOrderSelected}/>
       </RowBetween>
+      <ListGames>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      <Game/>
+      </ListGames>
     </BackgroundLight>
     </>
       

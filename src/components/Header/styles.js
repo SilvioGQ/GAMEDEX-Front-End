@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    margin:30px 100px 30px 100px;
+    margin:30px 100px 10px 100px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-self: center;
 `;
 
 export const RowAround = styled.div`
@@ -12,24 +14,26 @@ export const RowAround = styled.div`
     justify-content: space-around;
 `;
 export const Title = styled.h1`
-    font-size: 36px;
-    margin-left: 15px;
+    font-size: 32px;
+    margin-left: 10px;
+    margin-top: 20px;
+    font-weight: 600;
 `
 
 export const Games = styled.p`
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 15px;
     color: ${props=>props.selected === 'games' ? '#fff' : '#a7a7a7'};
 `
 
 export const Collectors = styled.p`
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 15px;
     color: ${props=>props.selected === 'collectors' ? '#fff' : '#a7a7a7'};
 `
 
 export const Statistics = styled.p`
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 15px;
     color: ${props=>props.selected === 'statistics' ? '#fff' : '#a7a7a7'};
 `
@@ -39,6 +43,7 @@ export const Game = styled.img`
     height: 60px;
 `
 export const Logo = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
+    margin-top: 10px;
 `

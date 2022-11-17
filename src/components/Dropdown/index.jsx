@@ -6,14 +6,14 @@ export default function Dropdown ({ list, selected, setSelected }) {
   const [open,setOpen] = useState(false)
   const rotateZ1 = open ? "180deg" : "0deg";
   return(
-    <Container>
+    <Container open={open}>
     <WhiteRow onClick={() => {setOpen(!open); }}>
       <SelectText>
        {selected == '' ? list[0].name : selected} 
       </SelectText>
         <DropdownImage
           style={{
-            transform: [{ rotateZ: rotateZ1 }],
+            transform: `rotate(${rotateZ1})`,
           }}
           src={ArrowBottom}
         />
