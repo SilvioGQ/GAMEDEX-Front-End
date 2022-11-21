@@ -1,7 +1,7 @@
 import React from 'react'
 import Colors from '../../resource/Colors';
 import { TextInput, } from './styles';
-export default function Input ({value, onChange, placeholder,  secureTextEntry, err = false, hoveringInput, setHoveringInput, inputRequired }) {
+export default function Input ({value, onChange, placeholder, type = 'text', err = false, hoveringInput, setHoveringInput, inputRequired }) {
   return (
   <>
     <TextInput 
@@ -9,7 +9,7 @@ export default function Input ({value, onChange, placeholder,  secureTextEntry, 
       onChange={(e)=>onChange(e.target.value)}
       value={value}
       placeholder={placeholder}
-      security={secureTextEntry}
+      type={type}
       hovering={hoveringInput}
       onMouseEnter={() => setHoveringInput(true)}
       onMouseOut={() => setHoveringInput(false)}

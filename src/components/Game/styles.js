@@ -7,8 +7,22 @@ export const Container = styled.div`
     margin: 5px 15px 25px 15px;
 `;
 
+export const Genre = styled.p`
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: -5px;
+`
+
+export const GenreDiv = styled.div`
+    background-color: ${Colors.Black};
+    padding: 5px;
+    height: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+`
+
 export const Title = styled.p`
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 `
 

@@ -15,7 +15,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/jogos" element={<Games />} />
-      <Route path="/jogos/jogo" element={<GameInfo />} />
+      <Route path="/jogos/jogo/:id" element={<GameInfo />} />
       <Route path="/colecionadores" element={<Collectors />} />
       <Route path="/colecionadores/perfil" element={<CollectorsProfile />} />
       <Route path="/estatisticas" element={<Statistics />} />

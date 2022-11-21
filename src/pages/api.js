@@ -98,14 +98,15 @@ export async function CreateGame(email, password) {
     }
 }
 
-export async function getGame() {
+export async function getGames() {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
         },
     };
     try {
-        const response = await axios.post(`${BASE_API}/games`,requestConfig)
+        const response = await axios.get(`${BASE_API}/games`,requestConfig)
         return response.data;
     } catch (error) {
         return null;

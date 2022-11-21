@@ -52,6 +52,9 @@ export default function Login () {
           email: user.email,
         },
       });
+      localStorage.setItem('token', user.token);
+      navigate('jogos')
+      console.log('login',user)
     }    
   }
   const loginUser = async()=>{
@@ -87,8 +90,9 @@ export default function Login () {
           email: user.email,
         },
       });
+      localStorage.setItem('token', user.token);
+      navigate('jogos')
     }    
-    navigate('jogos')
     console.log('login',user)
   }
   console.log(userState)
@@ -118,7 +122,7 @@ export default function Login () {
             <Input 							
               value={senha}
               onChange={setSenha}
-				  	  secureTextEntry={true}				
+              type={'password'}			
 				  		placeholder="Senha"
 				  		inputRequired
               hovering={hoveringInput}
@@ -151,7 +155,7 @@ export default function Login () {
           <Input 							
             value={senha}
             onChange={setSenha}
-            secureTextEntry={true}				
+            type={'password'}				
             placeholder="Senha"
             inputRequired
             hovering={hoveringInput}

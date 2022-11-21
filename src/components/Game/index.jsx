@@ -1,17 +1,21 @@
 import React from 'react'
-import { Container, GameImg, Star, StarRating } from './styles'
+import { Container, GameImg, Genre, GenreDiv, Star, StarRating, Title } from './styles'
 import StarImg from '../../assets/star.png'
 import { useNavigate } from 'react-router-dom';
 import { RowWrap } from '../../resource/globalsStyles';
 
-export default function Game ({img,name,categories,stars}) {
+export default function Game ({game}) {
   const navigate = useNavigate();
   return(
     <Container>
-      <GameImg onClick={()=>navigate('jogo')} src={'https://tm.ibxk.com.br/2022/10/10/10130612756184.jpg?ims=184x240'}/>
+      <GameImg onClick={()=>navigate(`jogo/${game.id}`, {state:game})} src={game.img}/>
       <RowWrap>
-        <Star src={StarImg}/>
-        <StarRating>24</StarRating>
+        <Title>{game.name.substr(0,15)}</Title>
+        <GenreDiv>
+          <Genre>{game.genre}</Genre>
+        </GenreDiv>
+        {/* <Star src={StarImg}/>
+        <StarRating>24</StarRating> */}
       </RowWrap>
     </Container>
    )
