@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    margin:30px 100px 10px 100px;
     display: flex;
+    width: 100%;
+    /* margin:30px 100px 10px 100px; */
     justify-content: space-between;
     align-items: center;
-    align-self: center;
 `;
 
 export const RowAround = styled.div`

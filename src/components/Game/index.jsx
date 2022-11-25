@@ -1,22 +1,37 @@
 import React from 'react'
-import { Container, GameImg, Genre, GenreDiv, Star, StarRating, Title } from './styles'
+import {
+    Container,
+    GameImg,
+    Genres,
+    Genre,
+    GenreDiv,
+    Star,
+    StarRating,
+    Title
+} from './styles'
 import StarImg from '../../assets/star.png'
-import { useNavigate } from 'react-router-dom';
-import { RowWrap } from '../../resource/globalsStyles';
+import {useNavigate} from 'react-router-dom';
+import {RowWrap} from '../../resource/globalsStyles';
 
-export default function Game ({game}) {
-  const navigate = useNavigate();
-  return(
-    <Container>
-      <GameImg onClick={()=>navigate(`jogo/${game.id}`, {state:game})} src={game.img}/>
-      <RowWrap>
-        <Title>{game.name.substr(0,15)}</Title>
-        <GenreDiv>
-          <Genre>{game.genre}</Genre>
-        </GenreDiv>
-        {/* <Star src={StarImg}/>
+export default function Game({game}) {
+    const navigate = useNavigate();
+    return (
+        <Container>
+            <GameImg
+                onClick={() => navigate(`jogo/${game.id}`, {state: game})}
+                style={{ backgroundImage: `url(${game.img})` }}/>
+            <RowWrap>
+                <Title>{game.name}</Title>
+				<Genres>
+					{game.genre.split(",").map((genre, key) => {
+						return <GenreDiv>
+							<Genre key={key}>{genre.toUpperCase()}</Genre>
+						</GenreDiv>
+					})}
+				</Genres>
+                {/* <Star src={StarImg}/>
         <StarRating>24</StarRating> */}
-      </RowWrap>
-    </Container>
-   )
- }
+            </RowWrap>
+        </Container>
+    )
+}

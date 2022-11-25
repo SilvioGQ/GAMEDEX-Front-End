@@ -2,28 +2,41 @@ import styled from 'styled-components'
 import Colors from '../../resource/Colors';
 
 export const Container = styled.div`
-    flex-direction: column;
     display: flex;
-    margin: 5px 15px 25px 15px;
+    flex-direction: column;
+    /* margin: 5px 15px 25px 15px; */
 `;
 
 export const Genre = styled.p`
     font-size: 12px;
     font-weight: 600;
-    margin-top: -5px;
 `
 
 export const GenreDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: ${Colors.Black};
-    padding: 5px;
-    height: 15px;
-    margin-top: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
+    width: fit-content;
+    padding-left: .7vw;
+    padding-right: .7vw;
+`
+
+export const Genres = styled.div`
+    display: flex;
+    width: 100%;
+    gap: 1vw;
+    flex-wrap: wrap;
 `
 
 export const Title = styled.p`
+    width: 100%;
     font-size: 16px;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 `
 
 export const StarRating = styled.p`
@@ -34,12 +47,16 @@ export const StarRating = styled.p`
     cursor: pointer;
 `
 
-export const GameImg = styled.img`
-    width: 200px;
-    height: 250px;
+export const GameImg = styled.div`
+    width: 100%;
+    height: 35vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 5px;
     cursor: pointer;
 `
+
 export const Star = styled.img`
     margin-top: 10px;
     width: 25px;
