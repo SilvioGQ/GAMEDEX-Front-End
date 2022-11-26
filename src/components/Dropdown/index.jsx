@@ -20,18 +20,18 @@ export default function Dropdown({list, selected, setSelected}) {
                 setOpen(!open);
             }}>
                 <SelectText>
-                    {selected == '' ? list[0].name : selected}
+                    {selected == '' ? list[0].name : list.find(i => i.id == selected).name}
                 </SelectText>
 
                 <DropdownImage style={{ transform: `rotate(${rotateZ1})` }} src={ArrowBottom}/>
             </WhiteRow>
             <DropdownList display={open ? "flex" : "none"}>
-                {list && list.length > 0 && (list.filter(i => i.name !== selected).map((item, key) => {
+                {list && list.length > 0 && (list.filter(i => i.id !== selected).map((item, key) => {
                     return (
                         <div
                             key={key}
                             onClick={() => {
-                                setSelected(item.name);
+                                setSelected(item.id);
                                 setOpen(false)
                             }}>
                             <SelectText2>

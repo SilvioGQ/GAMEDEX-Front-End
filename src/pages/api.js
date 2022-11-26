@@ -100,7 +100,7 @@ export async function CreateGame(email, password) {
     }
 }
 
-export async function getGames() {
+export async function getGames(limit=10, offset=0) {
     const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
@@ -108,7 +108,7 @@ export async function getGames() {
         },
     };
     try {
-        const response = await axios.get(`${BASE_API}/games`,requestConfig)
+        const response = await axios.get(`${BASE_API}/games?limit=${limit}&offset=${offset}`,requestConfig)
         return response.data;
     } catch (error) {
         return null;
@@ -126,6 +126,21 @@ export async function AddToCollection(email, password) {
             email: email,
             password: password
         },requestConfig)
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function GetCollection(limit=10, offset=0) {
+    const token = localStorage.getItem('token')
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+    try {
+        const response = await axios.get(`${BASE_API}/collection?limit=${limit}&offset=${offset}`, requestConfig)
         return response.data;
     } catch (error) {
         return null;
