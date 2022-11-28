@@ -60,10 +60,12 @@ export default function Games() {
     
     const [collection, setCollection] = useState([])
 
+    console.log("collection ",collection)
+    console.log("games ",games)
+
     const getUserCollection = async () => {
         let res = await GetCollection(pagination.limit, pagination.offset)
         if(res) {
-            console.log("res ",res)
             setCollection(res.rows); 
             setTotalGames(res.count); 
         }
@@ -112,7 +114,7 @@ export default function Games() {
                     })}
 
                     {filterSelected == 1 && collection.length > 0 && collection.map((item, index) => {
-                        return (<Game key={index} game={item.game}/>)
+                        return (<Game key={index} game={{ ...item.game, games_collection: true }}/>)
                     })}
                 </ListGames>
             </BackgroundLight>
