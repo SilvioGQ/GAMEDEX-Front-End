@@ -15,8 +15,9 @@ import {RowWrap} from '../../resource/globalsStyles';
 
 export default function Game({game}) {
     const navigate = useNavigate();
+
     return (
-        <Container style={{ opacity: game.games_collection ? 1 : 0.5 }}>
+        <Container style={{ opacity: (game.games_collection) ? 1 : 0.5 }}>
             <GameImg
                 onClick={() => navigate(`jogo/${game.id}`, {state: game})}
                 style={{ backgroundImage: `url(${game.img})` }}/>
