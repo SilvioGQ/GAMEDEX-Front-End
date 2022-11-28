@@ -46,3 +46,10 @@ export const ListGames = styled.div`
     flex-wrap:wrap;
     /* justify-content: flex-start; */
 `;
+
+export const ListGamesFlex = styled.div`
+    /* width: 100%; */
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+`;

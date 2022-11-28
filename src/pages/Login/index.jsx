@@ -21,6 +21,7 @@ export default function Login () {
   const [page, setPage] = useState(1);
   const createUser = async()=>{
     const user = await CreateUser(nome,email,senha);
+    console.log('user',user)
     if(user){
       userDispatch({
         type: 'setImg',

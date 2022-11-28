@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
-import { BackgroundLight, ListGames, RowWrap } from '../../resource/globalsStyles'
+import { BackgroundLight, ListGames, ListGamesFlex, RowWrap } from '../../resource/globalsStyles'
 import { RowBetween } from '../Games/styles'
-import { Title } from './styles'
+import { Container, Title } from './styles'
 
 
 export default function Collectors() {
   const [hoveringInput, setHoveringInput] = useState(false);
   const [pesquisar, setPesquisar] = useState('');
   return (
-    <>
+    <Container>
       <Header selected={'collectors'} />
       <BackgroundLight>
         <RowBetween>
@@ -23,7 +23,7 @@ export default function Collectors() {
             hovering={hoveringInput}
             setHoveringInput={setHoveringInput} />
         </RowBetween>
-        <ListGames>
+        <ListGamesFlex>
         <Collector/>
         <Collector/>
         <Collector/>
@@ -32,8 +32,8 @@ export default function Collectors() {
         <Collector/>
         <Collector/>
         <Collector/>
-        </ListGames>
+        </ListGamesFlex>
       </BackgroundLight>
-    </>
+    </Container>
   )
 }

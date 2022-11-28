@@ -21,6 +21,7 @@ export const GenreDiv = styled.div`
     width: fit-content;
     padding-left: .7vw;
     padding-right: .7vw;
+    flex-wrap: wrap;
 `
 
 export const Genres = styled.div`
