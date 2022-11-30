@@ -3,7 +3,7 @@ import axios from "axios";
 // const BASE_API = "https://gamedex-api-teste.up.railway.app";
 const BASE_API = "http://localhost:3001";
 
-
+const token = localStorage.getItem('token')
 export async function CreateUser(name,email, password) {
     try {
         const response = await axios.post(`${BASE_API}/users`, {
@@ -34,7 +34,7 @@ export async function GetUserById(id) {
         },
     };
     try {
-        const response = await axios.post(`${BASE_API}/users/${id}`,requestConfig) 
+        const response = await axios.get(`${BASE_API}/users/${id}`,requestConfig) 
         return response.data;
     } catch (error) {
         return null;
@@ -55,7 +55,7 @@ export async function UpdateUser(id) {
     }
 }
 
-export async function DeteleUser(id) {
+export async function DeleteUser(id) {
     const requestConfig = {
         headers: {
             authorization: token,
@@ -63,6 +63,20 @@ export async function DeteleUser(id) {
     };
     try {
         const response = await axios.delete(`${BASE_API}/users/`,requestConfig) 
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function GetUsers() {
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+    try {
+        const response = await axios.get(`${BASE_API}/users/`,requestConfig) 
         return response.data;
     } catch (error) {
         return null;
@@ -101,7 +115,6 @@ export async function CreateGame(email, password) {
 }
 
 export async function getGames(limit=10, offset=0) {
-    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,

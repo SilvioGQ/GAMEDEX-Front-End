@@ -3,12 +3,14 @@ import { Row } from '../../resource/globalsStyles'
 import { Container, Joystick, Profile, Star, StarRating, UserName } from './styles'
 import StarImg from '../../assets/star.png'
 import JoystickImg from '../../assets/joystick.png'
-export default function Collector () {
+import { useNavigate } from 'react-router-dom'
+export default function Collector ({i}) {
+  const navigate = useNavigate();
   return(
-    <Container>
-      <Profile src='https://tm.ibxk.com.br/2022/10/10/10130612756184.jpg?ims=184x240'/>
+    <Container onClick={()=>navigate(`perfil/${i.id}`)}>
+      <Profile src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg'/>
       <div style={{display:'flex', flexDirection:'column',margin:0}}>
-        <UserName>Nelson</UserName>
+        <UserName>{i.name}</UserName>
         <Row>
           <Star src={StarImg}/>
           <StarRating>24</StarRating>

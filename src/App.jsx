@@ -19,7 +19,7 @@ export default function App() {
       <Route path="/jogos/jogo/:id" element={<GameInfo />} />
       <Route path="/jogos/jogo/:id/adicionar" element={<AddGame />} />
       <Route path="/colecionadores" element={<Collectors />} />
-      <Route path="/colecionadores/perfil" element={<CollectorsProfile />} />
+      <Route path="/colecionadores/perfil/:id" element={<CollectorsProfile />} />
       <Route path="/estatisticas" element={<Statistics />} />
     </Routes>
   )

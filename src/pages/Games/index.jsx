@@ -42,17 +42,14 @@ export default function Games() {
         setFilterSelected] = useState(0);
     const [games,
         setGames] = useState([]);
+        const [pagination, setPagination] = useState({
+            limit: 10,
+            offset: 0
+        })
+        const [totalGames, setTotalGames] = useState(0)
     const GetGames = async() => {
         await getGames(pagination.limit, pagination.offset).then((res) => { setGames(res.games); setTotalGames(res.count)})
     }
-    console.log(games);
-
-    const [pagination, setPagination] = useState({
-        limit: 10,
-        offset: 0
-    })
-
-    const [totalGames, setTotalGames] = useState(0)
 
     useEffect(() => {
         GetGames()
