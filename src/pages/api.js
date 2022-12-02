@@ -137,7 +137,7 @@ export async function AddToCollection(id_game, evidence) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
-            authorization: token,
+            Authorization: token,
         }
     }
 
@@ -145,7 +145,7 @@ export async function AddToCollection(id_game, evidence) {
         const response = await axios.post(`${BASE_API}/collection`, formData, requestConfig)
         return response.data;
     } catch (error) {
-        return null;
+        return error;
     }
 }
 

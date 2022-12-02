@@ -20,7 +20,7 @@ export const Row = styled.div`
 
 export const EvidenceImg = styled.div`
     width: 30vw;
-    height: 25vh;
+    height: 50vh;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

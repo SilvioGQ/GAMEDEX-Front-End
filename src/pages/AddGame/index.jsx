@@ -18,9 +18,12 @@ export default function AddGame() {
     const handleSubmit = async () => {
         if(!evidence) return alert('Você precisa colocar uma evidência para adicionar o item á coleção!');
 
-        console.log("imevidenceg ", evidence)
         const res = await AddToCollection(game.id, evidence)
-        console.log(res);
+        if(res){
+            return navigate("/jogos");
+        } else {
+            alert("Ocorreu um problema ao registrar o item!");
+        } 
     }
 
     useEffect(() => {
@@ -33,32 +36,30 @@ export default function AddGame() {
         <Container>
             <Header selected={'games'}/>
             <BackgroundLight>
-                {/* <form method='post' ref={formRef} onSubmit={(e) => {e.preventDefault(); handleSubmit()}}> */}
-                    <Row>
-                        <p className="title">{game.name}</p>
-                        <p className="subtitle">Evidencias</p>
-                    </Row>
+                <Row>
+                    <p className="title">{game.name}</p>
+                    <p className="subtitle">Evidencias</p>
+                </Row>
 
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                        <EvidenceImg style={{ backgroundImage: `url(${evidenceImg ? evidenceImg : DefaultEvidenceImg})`}} />
-                        <input type="file" required name="evidence_img" id="" defaultValue={evidence} onChange={(e) => setEvidence(e.target.files[0])} />
-                    </div>
-                    
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                    <EvidenceImg style={{ backgroundImage: `url(${evidenceImg ? evidenceImg : DefaultEvidenceImg})`}} />
+                    <input type="file" required name="evidence_img" id="" defaultValue={evidence} onChange={(e) => setEvidence(e.target.files[0])} />
+                </div>
+                
 
-                    <Row>
-                        <Button
-                            text={'Voltar'}
-                            styleType={"Back"}
-                            onPress={() => {
-                                navigate(`/jogos/jogo/${game.id}`, {state: game})                                
-                            }}/>
+                <div style={{ display: "flex", width: "100%", justifyContent: "center", marginTop: "3vh", gap: "30px" }}>
+                    <Button
+                        text={'Voltar'}
+                        styleType={"Back"}
+                        onPress={() => {
+                            navigate(`/jogos/jogo/${game.id}`, {state: game})                                
+                        }}/>
 
-                        <Button
-                            text={'Adicionar a coleção'}
-                            styleType={"next"}
-                            onPress={handleSubmit}/>
-                    </Row>
-                {/* </form> */}
+                    <Button
+                        text={'Adicionar a coleção'}
+                        styleType={"next"}
+                        onPress={handleSubmit}/>
+                </div>
             </BackgroundLight>
         </Container>
 
