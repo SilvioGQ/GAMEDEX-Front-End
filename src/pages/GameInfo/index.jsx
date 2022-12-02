@@ -26,9 +26,10 @@ export default function GameInfo() {
                             <Genre>
                                 {game.genre}</Genre>
                         </GenreDiv>
-						{!game.games_collection && <Button text={'Adicionar a minha coleção'} onPress={() => navigate("/jogos/jogo/:id/adicionar", {state: game})}/>}
+						{!game.games_collection && <Button text={'Adicionar a minha coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, {state: game})}/>}
                         <Button
                             text={'Voltar'}
+                            styleType={"back"}
                             onPress={() => {
                             navigate('/jogos')
                         }}/>
