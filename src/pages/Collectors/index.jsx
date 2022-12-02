@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
-import { BackgroundLight, ListGames, ListGamesFlex, RowWrap } from '../../resource/globalsStyles'
+import { BackgroundLight, Container, ListGames, ListGamesFlex, RowWrap } from '../../resource/globalsStyles'
 import { GetUsers } from '../api'
 import { RowBetween } from '../Games/styles'
-import { Container, Title } from './styles'
+import { Title } from './styles'
 
 
 export default function Collectors() {

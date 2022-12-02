@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../../components/Header'
-import { BackgroundLight } from '../../resource/globalsStyles'
+import { BackgroundLight, Container } from '../../resource/globalsStyles'
 
 
 export default function Statistics () {
   return(
-    <>
+    <Container>
       <Header selected={'statistics'} />
       <BackgroundLight>
       </BackgroundLight>
-    </>
+    </Container>
    )
  }

@@ -10,8 +10,7 @@ export const Container = styled.div`
     cursor: pointer;
     background-color: ${Colors.Black};
     border-radius: 4px;
-    width: 270px;
-    margin: 5px 15px 25px 15px;
+    width: 260px;
 `;
 
 export const RowWrap = styled.div`
@@ -19,7 +18,7 @@ export const RowWrap = styled.div`
     flex-wrap: wrap;
 `;
 export const UserName = styled.p`
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     margin-left: 13px;
 `
