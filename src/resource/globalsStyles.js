@@ -10,7 +10,7 @@ export const Container = styled.div`
     align-items: center;
     padding-left: 5vw;
     padding-right: 5vw;
-    padding-top: 3vh;
+    padding-top: 2vh;
 `;
 
 export const Row = styled.div`
@@ -40,16 +40,37 @@ export const RowWrap = styled.div`
 export const ListGames = styled.div`
     /* width: 100%; */
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    @media (max-width: 1700px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media (max-width: 1300px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
     grid-column-gap: 3vw;
     grid-row-gap: 2vh;
-    flex-wrap:wrap;
     /* justify-content: flex-start; */
 `;
 
 export const ListGamesFlex = styled.div`
     /* width: 100%; */
-    display: flex;
-    flex-wrap:wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media (max-width: 1700px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (max-width: 1300px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 750px) {
+        grid-template-columns: 1fr;
+    }
+    grid-column-gap: 4vw;
+    grid-row-gap: 3vh;
 `;

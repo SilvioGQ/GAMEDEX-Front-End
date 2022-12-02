@@ -77,7 +77,6 @@ export default function Games() {
     useEffect(() => {
         setPagination({ limit: 10, offset: 0});
     }, [filterSelected])
-
     return (
         <Container>
             <Header selected={'games'}/>
@@ -90,19 +89,22 @@ export default function Games() {
                         onChange={setPesquisar}
                         hovering={hoveringInput}
                         setHoveringInput={setHoveringInput}/>
-
                     <Dropdown
                         list={FilterList}
                         selected={filterSelected}
                         setSelected={setFilterSelected}/>
+                        <div style={{zIndex:3}}>
                     <Dropdown
                         list={CategoryList}
                         selected={categorySelected}
                         setSelected={setCategorySelected}/>
+                        </div>
+                        <div style={{zIndex:2}}>
                     <Dropdown
                         list={OrderList}
                         selected={orderSelected}
                         setSelected={setOrderSelected}/>
+                        </div>
                 </RowBetween>
 
                 <ListGames>

@@ -48,6 +48,7 @@ export const DropdownList = styled.div `
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: ${Colors.BlackLight};
+  margin-left: -1px;
 `;
 export const DropdownImage = styled.img `
     width: 25px;
