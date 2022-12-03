@@ -5,7 +5,7 @@ import './index.css'
 import {
   BrowserRouter,
 } from "react-router-dom";
-import GlobalStyle from './resource/global-style';
+import GlobalStyle from './resource/Global-style';
 
 import './fonts/static/EncodeSans/EncodeSans-Regular.ttf'
 import { UserProvider } from './context/UserContext';
