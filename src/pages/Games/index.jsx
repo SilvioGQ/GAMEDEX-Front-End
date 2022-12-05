@@ -120,7 +120,7 @@ export default function Games() {
                     })}
 
                     {filterSelected == 1 && collection.length > 0 && collection.map((item, index) => {
-                        return (<Game key={index} game={{ ...item.game, games_collection: true }}/>)
+                        return (<Game key={index} game={item} />)
                     })}
 
                     {filterSelected == 1 && collection.length === 0 && (

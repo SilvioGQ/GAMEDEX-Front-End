@@ -31,7 +31,9 @@ export default function GameInfo() {
                             })}
                         </Genres>
                         
-                        <Evidence style={{ backgroundImage: `url(${game.games_collection && game.games_collection.evidence_img ? game.games_collection.evidence_img : EvidenceImg})` }} />
+                        <Evidence style={{ backgroundImage: `url(${game.games_collection ? 
+                            (game.games_collection.evidence_img ? game.games_collection.evidence_img : EvidenceImg) : 
+                            (game.evidence_img ? game.evidence_img : EvidenceImg)})` }} />
 
                         <div style={{ display: "flex", width: "100%", justifyContent: "flex-end", gap: "20px" }}>
                             {!game.games_collection && <Button text={'Adicionar a minha coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, {state: game})}/>}
