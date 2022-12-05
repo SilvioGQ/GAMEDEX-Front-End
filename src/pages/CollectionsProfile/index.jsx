@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
 import { BackgroundLight, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
-import { getGames, GetUserById, GetUsers } from '../api'
+import { GetCollection, getGames, GetUserById, GetUsers } from '../api'
 import { RowBetween } from '../Games/styles'
 import { CollectorMargin, Container, Joystick, Profile, Star, StarRating, Title, UserName } from './styles'
 import StarImg from '../../assets/star.png'
@@ -15,6 +15,7 @@ import Arrow from '../../components/Arrow'
 
 export default function CollectionsProfile() {
   const navigate = useNavigate();
+  const {id} = useParams();
   const [hoveringInput, setHoveringInput] = useState(false);
   const [pesquisar, setPesquisar] = useState('');
   const [colecionador, setColecionador] = useState('');
@@ -22,10 +23,10 @@ export default function CollectionsProfile() {
   const [games,
     setGames] = useState([]);
   const Colletions = async () => {
-    await GetUserById(3).then((res) => { setColecionador(res.user) })
+    await GetUserById(id).then((res) => { setColecionador(res.user) })
   }
   const GetGames = async () => {
-    await getGames(7, pagination).then((res) => { setGames(res.games); })
+    await GetCollection(7, pagination).then((res) => { setGames(res.rows); })
   }
   console.log(colecionador)
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function CollectionsProfile() {
         <p>Jogos</p>
         <ScrollMenu RightArrow={<Arrow Rotation={'270deg'} Onpress={()=>setPagination(pagination+7)} />} LeftArrow={<Arrow Rotation={'90deg'} Onpress={()=>{if(pagination > 6)return setPagination(pagination-7)}} />}>
         {games.length > 0 && games.map((game, index) => {
-          return (<div style={{marginRight:30}}><Game key={index} game={game} /></div>)
+          return (<div style={{marginRight:30}}><Game key={index} game={game.game} evidence={game.evidence_img} /></div>)
         })}
         </ScrollMenu>
       </BackgroundLight>

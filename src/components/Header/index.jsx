@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Row} from '../../resource/globalsStyles'
 import {
     Collectors,
@@ -19,7 +19,31 @@ import gamesGray from '../../assets/gamesGray.png'
 import statisticsGray from '../../assets/statisticsGray.png'
 import {Link, useNavigate} from 'react-router-dom'
 
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 export default function Header({selected}) {
+    const { height, width } = useWindowDimensions();
     const navigate = useNavigate();
     return (
         <Container>
@@ -27,6 +51,7 @@ export default function Header({selected}) {
                 <Game src={LogoImage}/>
                 <Title>GAMEDEX</Title>
             </Row>
+            {width > 750 && (
             <RowAround>
                 <Row onClick={() => navigate('/colecionadores')}>
                     <Logo
@@ -50,6 +75,7 @@ export default function Header({selected}) {
                     <Statistics selected={selected}>Estatísticas</Statistics>
                 </Row>
             </RowAround>
+            )}
         </Container>
     )
 }
