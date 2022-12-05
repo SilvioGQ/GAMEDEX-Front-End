@@ -36,7 +36,11 @@ export default function Games() {
         {
             id: 1,
             name: 'Seus jogos'
-        }
+        },
+        // {
+        //     id: 2,
+        //     name: 'Jogos faltando'
+        // }
     ]
     const [filterSelected,
         setFilterSelected] = useState(0);
@@ -48,12 +52,12 @@ export default function Games() {
         })
         const [totalGames, setTotalGames] = useState(0)
     const GetGames = async() => {
-        await getGames(pagination.limit, pagination.offset).then((res) => { setGames(res.games); setTotalGames(res.count)})
+        await getGames(pagination.limit, pagination.offset, pesquisar).then((res) => { setGames(res.games); setTotalGames(res.count)})
     }
 
     useEffect(() => {
         GetGames()
-    }, [pagination])
+    }, [pagination, pesquisar])
     
     const [collection, setCollection] = useState([])
 
@@ -77,6 +81,7 @@ export default function Games() {
     useEffect(() => {
         setPagination({ limit: 10, offset: 0});
     }, [filterSelected])
+
     return (
         <Container>
             <Header selected={'games'}/>
@@ -93,18 +98,20 @@ export default function Games() {
                         list={FilterList}
                         selected={filterSelected}
                         setSelected={setFilterSelected}/>
-                        <div style={{zIndex:3}}>
-                    <Dropdown
-                        list={CategoryList}
-                        selected={categorySelected}
-                        setSelected={setCategorySelected}/>
-                        </div>
-                        <div style={{zIndex:2}}>
-                    <Dropdown
-                        list={OrderList}
-                        selected={orderSelected}
-                        setSelected={setOrderSelected}/>
-                        </div>
+                    
+                    {/* <div style={{zIndex:3}}>
+                        <Dropdown
+                            list={CategoryList}
+                            selected={categorySelected}
+                            setSelected={setCategorySelected}/>
+                    </div> */}
+                    
+                    {/* <div style={{zIndex:2}}>
+                        <Dropdown
+                            list={OrderList}
+                            selected={orderSelected}
+                            setSelected={setOrderSelected}/>
+                    </div> */}
                 </RowBetween>
 
                 <ListGames>
@@ -115,6 +122,10 @@ export default function Games() {
                     {filterSelected == 1 && collection.length > 0 && collection.map((item, index) => {
                         return (<Game key={index} game={{ ...item.game, games_collection: true }}/>)
                     })}
+
+                    {filterSelected == 1 && collection.length === 0 && (
+                        <p>Você não tem nenhum item ainda</p>
+                    )}
                 </ListGames>
             </BackgroundLight>
 

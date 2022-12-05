@@ -114,14 +114,14 @@ export async function CreateGame(email, password) {
     }
 }
 
-export async function getGames(limit=10, offset=0) {
+export async function getGames(limit=10, offset=0, search=null) {
     const requestConfig = {
         headers: {
             authorization: token,
         },
     };
     try {
-        const response = await axios.get(`${BASE_API}/games?limit=${limit}&offset=${offset}`,requestConfig)
+        const response = await axios.get(`${BASE_API}/games?limit=${limit}&offset=${offset}${search && "&search="+search}`,requestConfig)
         return response.data;
     } catch (error) {
         return null;
