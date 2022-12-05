@@ -1,7 +1,6 @@
 import axios from "axios";
-
-const BASE_API = "https://gamedex-api-teste.up.railway.app";
-//const BASE_API = "http://localhost:3001";
+//const BASE_API = "https://gamedex-api-teste.up.railway.app";
+const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
 export async function CreateUser(name,email, password) {
@@ -164,7 +163,8 @@ export async function GetCollection(limit=10, offset=0) {
     }
 }
 
-export async function AddStar(email, password) {
+export async function AddStar(id) {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -172,8 +172,7 @@ export async function AddStar(email, password) {
     };
     try {
         const response = await axios.post(`${BASE_API}/stars`, {
-            email: email,
-            password: password
+            id_collection: id
         },requestConfig)
         return response.data;
     } catch (error) {
@@ -181,14 +180,17 @@ export async function AddStar(email, password) {
     }
 }
 
-export async function DelteStar(email, password) {
+export async function DelteStar(id) {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
         },
     };
     try {
-        const response = await axios.delete(`${BASE_API}/stars`,requestConfig)
+        const response = await axios.delete(`${BASE_API}/stars`, {
+            id_collection: id
+        },requestConfig)
         return response.data;
     } catch (error) {
         return null;
