@@ -17,6 +17,8 @@ import statisticsWhite from '../../assets/statisticsWhite.png'
 import collectorsGray from '../../assets/collectorsGray.png'
 import gamesGray from '../../assets/gamesGray.png'
 import statisticsGray from '../../assets/statisticsGray.png'
+import logoutIconWhite from '../../assets/logoutIconWhite.png'
+import logoutIconGray from '../../assets/logoutIconGray.png'
 import {Link, useNavigate} from 'react-router-dom'
 
 function getWindowDimensions() {
@@ -60,6 +62,7 @@ export default function Header({selected}) {
                         : collectorsGray}/>
                     <Collectors selected={selected}>Colecionadores</Collectors>
                 </Row>
+
                 <Row onClick={() => navigate('/jogos')}>
                     <Logo
                         src={selected === 'games'
@@ -67,6 +70,7 @@ export default function Header({selected}) {
                         : gamesGray}/>
                     <Games selected={selected}>Jogos</Games>
                 </Row>
+
                 <Row onClick={() => navigate('/estatisticas')}>
                     <Logo
                         src={selected === 'statistics'
@@ -74,8 +78,19 @@ export default function Header({selected}) {
                         : statisticsGray}/>
                     <Statistics selected={selected}>Estatísticas</Statistics>
                 </Row>
+                
+                <Row onClick={() => {
+                    localStorage.removeItem('token');
+                    navigate('/')
+                }}>
+                    <Logo
+                        src={selected === 'logout'
+                        ? logoutIconWhite
+                        : logoutIconGray}/>
+                    <Statistics selected={selected}>Sair</Statistics>
+                </Row>
             </RowAround>
-            )}
+        )}
         </Container>
     )
 }

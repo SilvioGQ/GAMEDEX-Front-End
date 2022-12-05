@@ -16,6 +16,7 @@ export const Container = styled.div`
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
+    cursor: pointer;
     /* width: 100%;
     justify-content: space-between;
     align-items: center; */
