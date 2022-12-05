@@ -7,7 +7,8 @@ import Search from '../../components/Search'
 import { Container, BackgroundLight, ListGames, Row} from '../../resource/globalsStyles'
 import {getGames} from '../api'
 import Button from '../../components/Button'
-import {GameImg, Genres, Genre, GenreDiv, Title} from './styles'
+import {GameImg, Genres, Genre, GenreDiv, Title, Evidence} from './styles'
+import EvidenceImg from "../../assets/evidence-tmp.png"
 
 export default function GameInfo() {
     const game = useLocation().state;
@@ -29,7 +30,10 @@ export default function GameInfo() {
                                 </GenreDiv>
                             })}
                         </Genres>
-                        <div style={{ display: "flex" }}>
+                        
+                        <Evidence style={{ backgroundImage: `url(${game.games_collection && game.games_collection.evidence_img ? game.games_collection.evidence_img : EvidenceImg})` }} />
+
+                        <div style={{ display: "flex", width: "100%", justifyContent: "flex-end", gap: "20px" }}>
                             {!game.games_collection && <Button text={'Adicionar a minha coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, {state: game})}/>}
                             <Button
                                 text={'Voltar'}

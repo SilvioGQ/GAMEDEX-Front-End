@@ -1,6 +1,18 @@
 import styled from 'styled-components'
 import Colors from '../../resource/Colors';
 
+export const Main = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: ${Colors.BlackLight};
+    margin-top: 2vh;
+    border-radius: 10px;
+`;
+
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
@@ -22,6 +34,6 @@ export const EvidenceImg = styled.div`
     width: 30vw;
     height: 50vh;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 `;

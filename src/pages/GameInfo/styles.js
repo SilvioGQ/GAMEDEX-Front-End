@@ -32,6 +32,19 @@ export const Genres = styled.div`
     flex-wrap: wrap;
 `
 
+export const Evidence = styled.div`
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: ${Colors.Black};
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+`;
+
 export const Genre = styled.p`
     font-size: 12px;
     font-weight: 600;
@@ -51,7 +64,7 @@ export const StarRating = styled.p`
 `
 
 export const GameImg = styled.div`
-    width: 40%;
+    width: 50%;
     height: 100%;
     background-position: center;
     background-size: cover;
