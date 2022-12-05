@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_API = "https://gamedex-api-teste.up.railway.app";
-const BASE_API = "http://localhost:3001";
+const BASE_API = "https://gamedex-api-teste.up.railway.app";
+//const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
 export async function CreateUser(name,email, password) {
@@ -128,20 +128,24 @@ export async function getGames(limit=10, offset=0) {
     }
 }
 
-export async function AddToCollection(email, password) {
+export async function AddToCollection(id_game, evidence) {
+    let formData = new FormData();
+    formData.append("evidence_img", evidence);
+    formData.append("id_game", id_game);
+
     const requestConfig = {
         headers: {
-            authorization: token,
-        },
-    };
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            Authorization: token,
+        }
+    }
+
     try {
-        const response = await axios.post(`${BASE_API}/collections`, {
-            email: email,
-            password: password
-        },requestConfig)
+        const response = await axios.post(`${BASE_API}/collection`, formData, requestConfig)
         return response.data;
     } catch (error) {
-        return null;
+        return error;
     }
 }
 

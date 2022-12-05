@@ -13,21 +13,28 @@ export const Container = styled.div`
     margin: 5px 15px 25px 15px;
 `;
 
+export const GenreDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${Colors.Black};
+    border-radius: 10px;
+    width: fit-content;
+    padding-left: .7vw;
+    padding-right: .7vw;
+    flex-wrap: wrap;
+`
+
+export const Genres = styled.div`
+    display: flex;
+    width: 100%;
+    gap: 1vw;
+    flex-wrap: wrap;
+`
+
 export const Genre = styled.p`
     font-size: 12px;
     font-weight: 600;
-    margin-top: -5px;
-    text-align: center;
-`
-
-export const GenreDiv = styled.div`
-    background-color: ${Colors.Black};
-    padding: 5px;
-    height: 15px;
-    width:80px;
-    margin-top: 5px;
-    border-radius: 5px;
-    align-items: center;
 `
 
 export const Title = styled.p`
@@ -44,8 +51,8 @@ export const StarRating = styled.p`
 `
 
 export const GameImg = styled.div`
-    width: 20vw;
-    height: 30vw;
+    width: 40%;
+    height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
