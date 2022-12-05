@@ -164,6 +164,22 @@ export async function GetCollection(limit=10, offset=0) {
     }
 }
 
+export async function DeleteItem(id) {
+    const token = localStorage.getItem('token')
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+
+    try {
+        const response = await axios.delete(`${BASE_API}/collection/${id}/delete`, requestConfig)
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export async function AddStar(id) {
     const token = localStorage.getItem('token')
     const requestConfig = {

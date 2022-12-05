@@ -9,11 +9,22 @@ import {getGames} from '../api'
 import Button from '../../components/Button'
 import {GameImg, Genres, Genre, GenreDiv, Title, Evidence} from './styles'
 import EvidenceImg from "../../assets/evidence-tmp.png"
+import { DeleteItem } from "../api"
 
 export default function GameInfo() {
     const game = useLocation().state;
     const navigate = useNavigate();
     console.log(game) 
+
+    const deleteItem = async () => {
+        const res = await DeleteItem(game.games_collection.id)
+        if(res) {
+            alert("Jogo removido da sua coleção!")
+            navigate(`/jogos/`)
+        } else {
+            alert("Ocorreu um erro ao remover este item da coleção...")
+        }
+    }
 
     return (
         <Container>
@@ -36,13 +47,15 @@ export default function GameInfo() {
                             (game.evidence_img ? game.evidence_img : EvidenceImg)})` }} />
 
                         <div style={{ display: "flex", width: "100%", justifyContent: "flex-end", gap: "20px" }}>
-                            {!game.games_collection && <Button text={'Adicionar a minha coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, {state: game})}/>}
                             <Button
                                 text={'Voltar'}
                                 styleType={"back"}
                                 onPress={() => {
-                                navigate('/jogos')
-                            }}/>
+                                    navigate('/jogos')
+                                }}
+                            />                            
+                            {!game.games_collection && <Button text={'Adicionar à coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, {state: game})}/>}
+                            {game.games_collection && <Button text={'Remover da coleção'} styleType={"white"} onPress={() => { deleteItem() }}/>}
                         </div>
                     </div>
                 </div>
