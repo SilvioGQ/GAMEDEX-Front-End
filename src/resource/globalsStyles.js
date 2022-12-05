@@ -30,6 +30,24 @@ export const Row = styled.div`
     } */
 `
 
+export const RowPointer = styled.div`
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    /* width: 100%;
+    justify-content: space-between;
+    align-items: center; */
+
+    /* .title {
+        font-weight: bold;
+        font-size: 27px;
+    } */
+
+    /* .subtitle {
+        font-size: 23px;
+    } */
+`
+
 export const BackgroundLight = styled.div`
     display: flex;
     flex-direction: column;
@@ -74,6 +92,7 @@ export const ListGamesFlex = styled.div`
     /* width: 100%; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 35px;
     @media (max-width: 1700px) {
         grid-template-columns: 1fr 1fr 1fr;
     }

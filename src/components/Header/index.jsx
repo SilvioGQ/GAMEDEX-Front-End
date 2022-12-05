@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Row} from '../../resource/globalsStyles'
+import {Row, RowPointer} from '../../resource/globalsStyles'
 import {
     Collectors,
     Container,
@@ -53,27 +53,27 @@ export default function Header({selected}) {
             </Row>
             {width > 750 && (
             <RowAround>
-                <Row onClick={() => navigate('/colecionadores')}>
+                <RowPointer onClick={() => navigate('/colecionadores')}>
                     <Logo
                         src={selected === 'collectors'
                         ? collectorsWhite
                         : collectorsGray}/>
                     <Collectors selected={selected}>Colecionadores</Collectors>
-                </Row>
-                <Row onClick={() => navigate('/jogos')}>
+                </RowPointer>
+                <RowPointer onClick={() => navigate('/jogos')}>
                     <Logo
                         src={selected === 'games'
                         ? gamesWhite
                         : gamesGray}/>
                     <Games selected={selected}>Jogos</Games>
-                </Row>
-                <Row onClick={() => navigate('/estatisticas')}>
+                </RowPointer>
+                <RowPointer onClick={() => navigate('/estatisticas')}>
                     <Logo
                         src={selected === 'statistics'
                         ? statisticsWhite
                         : statisticsGray}/>
                     <Statistics selected={selected}>Estatísticas</Statistics>
-                </Row>
+                </RowPointer>
             </RowAround>
             )}
         </Container>

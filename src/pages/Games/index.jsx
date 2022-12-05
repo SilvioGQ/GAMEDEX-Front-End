@@ -52,7 +52,7 @@ export default function Games() {
         })
         const [totalGames, setTotalGames] = useState(0)
     const GetGames = async() => {
-        await getGames(pagination.limit, pagination.offset, pesquisar).then((res) => { setGames(res.games); setTotalGames(res.count)})
+        await getGames(pagination.limit, pagination.offset, pesquisar.toLowerCase()).then((res) => { setGames(res.games); setTotalGames(res.count)})
     }
 
     useEffect(() => {
