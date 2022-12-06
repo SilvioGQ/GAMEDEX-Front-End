@@ -4,7 +4,7 @@ import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
 import { BackgroundLight, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
-import { getGames, GetUserById, GetUsers, MostStaredItens } from '../api'
+import { getGames, GetUserById, GetUsers, MostPossesedItens, MostStaredItens, MostUsersItens } from '../api'
 import { RowBetween } from '../Games/styles'
 import { CollectorMargin, Container, Joystick, Profile, Star, StarRating, Title, UserName } from './styles'
 import StarImg from '../../assets/star.png'
@@ -28,6 +28,8 @@ export default function Statistics() {
     setGames] = useState([]);
   const Colletions = async() => {
     await GetUsers(10,0,'').then((res) => { setColecionadores(res.users);})
+    await MostUsersItens().then((i)=>console.log(i));
+    await MostPossesedItens().then((i)=>console.log(i));
     await MostStaredItens().then((i)=>setTopUsers(...topUsers,{x:i.items.game_name, y:i.items.stars}))};
   const GetGames = async () => {
     await getGames(7, pagination.offset,'').then((res) => { setGames(res.games); })
