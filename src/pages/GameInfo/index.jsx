@@ -13,6 +13,7 @@ import { DeleteItem } from "../api"
 
 export default function GameInfo() {
     const game = useLocation().state;
+    const userState =JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate();
     console.log(game)
 
@@ -64,7 +65,7 @@ export default function GameInfo() {
                                 }}
                             />
                             {!game.games_collection && <Button text={'Adicionar à coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, { state: game })} />}
-                            {game.games_collection && <Button text={'Remover da coleção'} styleType={"white"} onPress={() => { deleteItem() }} />}
+                            {game.games_collection && game.games_collection.id_user === userState.id &&<Button text={'Remover da coleção'} styleType={"white"} onPress={() => { deleteItem() }} />}
                         </div>
                     </div>
                 </div>

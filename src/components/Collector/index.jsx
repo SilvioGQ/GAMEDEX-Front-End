@@ -12,8 +12,8 @@ export default function Collector ({i}) {
       <div style={{display:'flex', flexDirection:'column',margin:0}}>
         <UserName>{i.name}</UserName>
         <Row>
-          <Star src={StarImg}/>
-          <StarRating>24</StarRating>
+          {/* <Star src={StarImg}/>
+          <StarRating>24</StarRating> */}
           {i.games && (
             <>
             <Star src={JoystickImg}/>
