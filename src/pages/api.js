@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_API = "https://gamedex-api-teste.up.railway.app";
-const BASE_API = "http://localhost:3001";
+const BASE_API = "https://gamedex-api-teste.up.railway.app";
+//const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
 export async function CreateUser(name,email, password) {
@@ -214,6 +214,46 @@ export async function DelteStar(id) {
         const response = await axios.delete(`${BASE_API}/stars`, {
             id_collection: id
         },requestConfig)
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function MostStaredItens() {
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+    try {
+        const response = await axios.get(`${BASE_API}/stats/more-stared-items`,requestConfig)
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+export async function MostPossesedItens() {
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+    try {
+        const response = await axios.get(`${BASE_API}/stats/more-possesed-items`,requestConfig)
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+export async function MostUsersItens() {
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+    try {
+        const response = await axios.get(`${BASE_API}/stats/users-most-items`,requestConfig)
         return response.data;
     } catch (error) {
         return null;
