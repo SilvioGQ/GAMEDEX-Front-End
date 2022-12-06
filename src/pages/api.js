@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_API = "https://gamedex-api-teste.up.railway.app";
-const BASE_API = "http://localhost:3001";
+ const BASE_API = "https://gamedex-api-teste.up.railway.app";
+//const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
 export async function CreateUser(name,email, password) {
@@ -69,14 +69,15 @@ export async function DeleteUser(id) {
     }
 }
 
-export async function GetUsers() {
+export async function GetUsers({limit=10,offset=0,search}) {
+    console.log(search)
     const requestConfig = {
         headers: {
             authorization: token,
         },
     };
     try {
-        const response = await axios.get(`${BASE_API}/users/`,requestConfig) 
+        const response = await axios.get(`${BASE_API}/users?limit=${limit}&offset=${offset}${search ? '&search='+search : ''}`,requestConfig) 
         return response.data;
     } catch (error) {
         return null;
@@ -149,7 +150,7 @@ export async function AddToCollection(id_game, evidence) {
     }
 }
 
-export async function GetCollection(limit=10, offset=0) {
+export async function GetCollection(limit=10, offset=0, id) {
     const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
@@ -157,7 +158,28 @@ export async function GetCollection(limit=10, offset=0) {
         },
     };
     try {
-        const response = await axios.get(`${BASE_API}/collection?limit=${limit}&offset=${offset}`, requestConfig)
+        if(id){
+            const response = await axios.get(`${BASE_API}/collection?limit=${limit}&offset=${offset}&id=${id}`, requestConfig)            
+            return response.data;
+        }else {
+            const response = await axios.get(`${BASE_API}/collection?limit=${limit}&offset=${offset}`, requestConfig)
+            return response.data;
+        }
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function DeleteItem(id) {
+    const token = localStorage.getItem('token')
+    const requestConfig = {
+        headers: {
+            authorization: token,
+        },
+    };
+
+    try {
+        const response = await axios.delete(`${BASE_API}/collection/${id}/delete`, requestConfig)
         return response.data;
     } catch (error) {
         return null;

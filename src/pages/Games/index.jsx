@@ -31,11 +31,11 @@ export default function Games() {
     const FilterList = [
         {
             id: 0,
-            name: 'Tudo'
+            name: 'Todos'
         },
         {
             id: 1,
-            name: 'Seus jogos'
+            name: 'Meus jogos'
         },
         // {
         //     id: 2,
@@ -65,7 +65,7 @@ export default function Games() {
     console.log("games ",games)
 
     const getUserCollection = async () => {
-        let res = await GetCollection(pagination.limit, pagination.offset)
+        let res = await GetCollection(pagination.limit, pagination.offset, null)
         if(res) {
             setCollection(res.rows); 
             setTotalGames(res.count); 

@@ -15,13 +15,14 @@ export const Container = styled.div`
 
 export const RowBetween = styled.div`
     display: grid;
-    width: 100%;
-    grid-template-columns: 4.4fr 2fr 2fr 2fr;
+    width: 98%;
+    //  grid-template-columns: 4.4fr 2fr 2fr 2fr;
+    grid-template-columns: 2fr 1fr;
     @media (max-width: 700px) {
         grid-template-columns: 1fr;
         grid-row-gap:15px;
     }
-    grid-column-gap: 3vw;
+    grid-column-gap: 35vw;
     margin-bottom: 3vh;
     /* justify-content: space-between; */
     /* border: 1px solid black; */

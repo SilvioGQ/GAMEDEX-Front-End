@@ -16,6 +16,7 @@ export const Container = styled.div`
 export const Row = styled.div`
     display: flex;
     flex-direction: row;
+    cursor: pointer;
     /* width: 100%;
     justify-content: space-between;
     align-items: center; */
@@ -82,6 +83,7 @@ export const ListGames = styled.div`
     }
     @media (max-width: 600px) {
         grid-template-columns: 1fr;
+        align-self: center;
     }
     grid-column-gap: 3vw;
     grid-row-gap: 2vh;
@@ -101,6 +103,7 @@ export const ListGamesFlex = styled.div`
     }
     @media (max-width: 750px) {
         grid-template-columns: 1fr;
+        align-self: center;
     }
     grid-column-gap: 4vw;
     grid-row-gap: 3vh;

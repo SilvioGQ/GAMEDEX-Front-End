@@ -18,12 +18,12 @@ export default function Collectors() {
     offset: 0
 })
   const Colletions = async() => {
-    await GetUsers().then((res) => { setColecionadores(res.users.filter((i)=>i.id !== userState.id));})
+    await GetUsers(pagination.limit,pagination.offset,pesquisar).then((res) => { setColecionadores(res.users.filter((i)=>i.id !== userState.id));})
 }
 console.log(colecionadores)
 useEffect(() => {
   Colletions()
-}, [pagination])
+}, [pagination, pesquisar])
   return (
     <Container>
       <Header selected={'collectors'} />

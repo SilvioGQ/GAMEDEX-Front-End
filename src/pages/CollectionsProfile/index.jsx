@@ -26,7 +26,7 @@ export default function CollectionsProfile() {
     await GetUserById(id).then((res) => { setColecionador(res.user) })
   }
   const GetGames = async () => {
-    await GetCollection(7, pagination).then((res) => { setGames(res.rows); })
+    await GetCollection(5, pagination, id).then((res) => { setGames(res.rows); })
   }
   console.log(colecionador)
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function CollectionsProfile() {
         <p>Jogos</p>
         <ScrollMenu RightArrow={<Arrow Rotation={'270deg'} Onpress={()=>setPagination(pagination+7)} />} LeftArrow={<Arrow Rotation={'90deg'} Onpress={()=>{if(pagination > 6)return setPagination(pagination-7)}} />}>
         {games.length > 0 && games.map((game, index) => {
-          return (<div style={{marginRight:30}}><Game key={index} game={game.game} evidence={game.evidence_img} /></div>)
+          return (<div style={{marginRight:30}}><Game key={index} game={game} /></div>)
         })}
         </ScrollMenu>
       </BackgroundLight>

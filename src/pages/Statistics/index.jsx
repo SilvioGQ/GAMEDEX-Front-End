@@ -26,7 +26,7 @@ export default function Statistics() {
   const [games,
     setGames] = useState([]);
   const Colletions = async() => {
-    await GetUsers().then((res) => { setColecionadores(res.users);})
+    await GetUsers(10,0,'').then((res) => { setColecionadores(res.users);})
 }
   const GetGames = async () => {
     await getGames(7, pagination).then((res) => { setGames(res.games); })

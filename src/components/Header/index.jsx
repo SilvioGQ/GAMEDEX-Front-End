@@ -17,6 +17,8 @@ import statisticsWhite from '../../assets/statisticsWhite.png'
 import collectorsGray from '../../assets/collectorsGray.png'
 import gamesGray from '../../assets/gamesGray.png'
 import statisticsGray from '../../assets/statisticsGray.png'
+import logoutIconWhite from '../../assets/logoutIconWhite.png'
+import logoutIconGray from '../../assets/logoutIconGray.png'
 import {Link, useNavigate} from 'react-router-dom'
 
 function getWindowDimensions() {
@@ -51,31 +53,42 @@ export default function Header({selected}) {
                 <Game src={LogoImage}/>
                 <Title>GAMEDEX</Title>
             </Row>
-            {width > 750 && (
+            
             <RowAround>
                 <RowPointer onClick={() => navigate('/colecionadores')}>
                     <Logo
                         src={selected === 'collectors'
                         ? collectorsWhite
                         : collectorsGray}/>
-                    <Collectors selected={selected}>Colecionadores</Collectors>
+               {width > 850 && (<Collectors selected={selected}>Colecionadores</Collectors>)}
                 </RowPointer>
                 <RowPointer onClick={() => navigate('/jogos')}>
                     <Logo
                         src={selected === 'games'
                         ? gamesWhite
                         : gamesGray}/>
-                    <Games selected={selected}>Jogos</Games>
+                    {width > 850 && (<Games selected={selected}>Jogos</Games>)}
                 </RowPointer>
                 <RowPointer onClick={() => navigate('/estatisticas')}>
                     <Logo
                         src={selected === 'statistics'
                         ? statisticsWhite
                         : statisticsGray}/>
-                    <Statistics selected={selected}>Estatísticas</Statistics>
+                    {width > 850 && (<Statistics selected={selected}>Estatísticas</Statistics>)}
+                </RowPointer>
+                
+                <RowPointer onClick={() => {
+                    localStorage.removeItem('token');
+                    navigate('/')
+                }}>
+                    <Logo
+                        src={selected === 'logout'
+                        ? logoutIconWhite
+                        : logoutIconGray}/>
+                    {width > 850 && (<Statistics selected={selected}>Sair</Statistics>)}
                 </RowPointer>
             </RowAround>
-            )}
+
         </Container>
     )
 }
