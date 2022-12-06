@@ -14,8 +14,12 @@ export default function Collector ({i}) {
         <Row>
           <Star src={StarImg}/>
           <StarRating>24</StarRating>
-          <Star src={JoystickImg}/>
-          <Joystick>10</Joystick>
+          {i.games && (
+            <>
+            <Star src={JoystickImg}/>
+            <Joystick>{i.games}</Joystick>
+            </>
+          )}
         </Row>
       </div>
     </Container>

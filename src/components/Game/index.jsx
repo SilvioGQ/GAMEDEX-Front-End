@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
     Container,
     GameImg,
@@ -12,12 +12,13 @@ import {
 import StarImg from '../../assets/star.png'
 import {useNavigate} from 'react-router-dom';
 import {RowWrap} from '../../resource/globalsStyles';
+import { UserContext } from '../../context/UserContext';
 
 export default function Game({game}) {
     const navigate = useNavigate();
-
+    const userState =JSON.parse(localStorage.getItem('user'))
     return (
-        <Container style={{ opacity: (game.games_collection) ? 1 : 0.5 }}>
+        <Container style={{ opacity: (game.games_collection && userState.id == game.games_collection.id_user) ? 1 : 0.5 }}>
             <GameImg
                 onClick={() => navigate(`/jogos/jogo/${game.id}`, {state: game})}
                 style={{ backgroundImage: `url(${game.img})` }}/>

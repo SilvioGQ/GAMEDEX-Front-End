@@ -10,7 +10,7 @@ import { Title, RowBetween } from './styles'
 
 export default function Collectors() {
   const [hoveringInput, setHoveringInput] = useState(false);
-  const { state:userState, dispatch: userDispatch } = useContext(UserContext);
+  const userState =JSON.parse(localStorage.getItem('user'))
   const [pesquisar, setPesquisar] = useState('');
   const [colecionadores, setColecionadores] = useState('');
   const [pagination, setPagination] = useState({

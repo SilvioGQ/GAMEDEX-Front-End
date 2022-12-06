@@ -10,6 +10,7 @@ import ButtonTransparent from '../../components/ButtonTransparent'
 import { CreateUser, LoginUser } from '../api'
 import { UserContext } from '../../context/UserContext'
 import { useNavigate } from 'react-router-dom'
+import { useWindowDimensions } from '../../constants'
 
 export default function Login () {
   const { state:userState, dispatch: userDispatch } = useContext(UserContext);
@@ -19,6 +20,7 @@ export default function Login () {
   const [nome, setNome] = useState('');
   const [senha,setSenha] = useState('');
   const [page, setPage] = useState(1);
+  const { height, width } = useWindowDimensions();
   const createUser = async()=>{
     const user = await CreateUser(nome,email,senha);
     console.log('user',user)
@@ -54,8 +56,8 @@ export default function Login () {
         },
       });
       localStorage.setItem('token', user.token);
+      localStorage.setItem('user',JSON.stringify(user));
       navigate('jogos')
-      console.log('login',user)
     }    
   }
   const loginUser = async()=>{
@@ -92,18 +94,20 @@ export default function Login () {
         },
       });
       localStorage.setItem('token', user.token);
+      localStorage.setItem('user',JSON.stringify(user));
       navigate('jogos')
     }    
     console.log('login',user)
   }
-  console.log(userState)
   return(
     <Container>
+      {width > 1200 && (
       <FlexLeft>
         <h1 style={{marginLeft:40, marginBottom:50}}>COMECE SUAS COLEÇÃO DE JOGOS AGORA!</h1>
         <AnimationImg src={LoginAnimation}/>
 
       </FlexLeft>
+      )}
       <FlexRight>
         <Row>
           <Logo src={LogoImage} />
@@ -130,10 +134,8 @@ export default function Login () {
               setHoveringInput={setHoveringInput}
               />
           </div>
-          <div style={{width:'100%',marginVertical:50}}>
-            <Button text={'ENTRAR'} onPress={()=>{loginUser()}}/>
-            <ButtonTransparent text={'CADASTRE-SE'} onPress={()=>setPage(2)}/>
-          </div>
+            <ButtonTransparent id={1} text={'ENTRAR'} onPress={()=>{loginUser()}}/>
+            <ButtonTransparent id={2} text={'CADASTRE-SE'} onPress={()=>setPage(2)}/>
         </>
         :
         <>
@@ -163,8 +165,8 @@ export default function Login () {
             setHoveringInput={setHoveringInput}/>
         </div>
         <div style={{width:'100%',marginVertical:50}}>
-          <Button text={'CRIAR CONTA'} onPress={()=>createUser()} />
-          <ButtonTransparent text={'CANCELAR'} onPress={()=>setPage(1)}/>
+          <ButtonTransparent id={1} text={'CRIAR CONTA'} onPress={()=>createUser()} />
+          <ButtonTransparent id={2} text={'CANCELAR'} onPress={()=>setPage(1)}/>
         </div>
       </>
         }

@@ -2,15 +2,15 @@ import styled from 'styled-components'
 import Colors from '../../resource/Colors'
 export const Button = styled.div`
     cursor: pointer;
-    background-color: ${Colors.BlackLight};
-    border: 1px solid ${Colors.White};
-    align-self: center;
+    background-color: ${props=> props.bgColor};
+    border: 1px solid  ${props=> props.BorderColor};
     border-radius: 10px;
-    width: 100%;
+    width: 440px;
+    margin-top: 15px;
+    margin-left:35px;
 `
 export const Text = styled.p`
     text-align: center;
-    font-size: 16px;
-    align-self: center;
-    padding: 16px;
+    font-size: 14px;
+    font-weight: 600;
 `

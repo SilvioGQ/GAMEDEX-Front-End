@@ -20,30 +20,7 @@ import statisticsGray from '../../assets/statisticsGray.png'
 import logoutIconWhite from '../../assets/logoutIconWhite.png'
 import logoutIconGray from '../../assets/logoutIconGray.png'
 import {Link, useNavigate} from 'react-router-dom'
-
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height
-    };
-  }
-  function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(
-      getWindowDimensions()
-    );
-  
-    useEffect(() => {
-      function handleResize() {
-        setWindowDimensions(getWindowDimensions());
-      }
-  
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-  
-    return windowDimensions;
-  }
+import { useWindowDimensions } from '../../constants'
 export default function Header({selected}) {
     const { height, width } = useWindowDimensions();
     const navigate = useNavigate();
@@ -79,6 +56,7 @@ export default function Header({selected}) {
                 
                 <RowPointer onClick={() => {
                     localStorage.removeItem('token');
+                    localStorage.removeItem('user');
                     navigate('/')
                 }}>
                     <Logo

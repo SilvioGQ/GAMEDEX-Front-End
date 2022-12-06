@@ -25,12 +25,25 @@ export const GenreDiv = styled.div`
     flex-wrap: wrap;
 `
 
+export const StarDiv = styled.div`
+cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${Colors.Yellow};
+    border-radius: 10px;
+    width: fit-content;
+    padding-left: .7vw;
+    padding-right: .7vw;
+`
+
 export const Genres = styled.div`
     display: flex;
     width: 100%;
     gap: 1vw;
     flex-wrap: wrap;
 `
+
 
 export const Evidence = styled.div`
     display: flex;
@@ -48,6 +61,12 @@ export const Evidence = styled.div`
 export const Genre = styled.p`
     font-size: 12px;
     font-weight: 600;
+`
+
+export const StarP = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+    color: ${Colors.Black};
 `
 
 export const Title = styled.p`
