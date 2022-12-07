@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import IsAdmin from "./components/Middleware/IsAdmin";
+import IsLogged from "./components/Middleware/IsLogged";
 import { Routes } from "react-router";
 import GameInfo from "./pages/GameInfo";
 import AddGame from "./pages/AddGame";
@@ -14,13 +15,13 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/jogos" element={<Games />} />
-      <Route path="/jogos/novo" element={<IsAdmin><NewGame /></IsAdmin>} />
-      <Route path="/jogos/jogo/:id" element={<GameInfo />} />
-      <Route path="/jogos/jogo/:id/adicionar" element={<AddGame />} />
-      <Route path="/colecionadores" element={<Collectors />} />
-      <Route path="/colecionadores/perfil/:id" element={<CollectorsProfile />} />
-      <Route path="/estatisticas" element={<Statistics />} />
+      <Route path="/jogos" element={<IsLogged><Games /></IsLogged>} />
+      <Route path="/jogos/novo" element={<IsLogged><IsAdmin><NewGame /></IsAdmin></IsLogged>} />
+      <Route path="/jogos/jogo/:id" element={<IsLogged><GameInfo /></IsLogged>} />
+      <Route path="/jogos/jogo/:id/adicionar" element={<IsLogged><AddGame /></IsLogged>} />
+      <Route path="/colecionadores" element={<IsLogged><Collectors /></IsLogged>} />
+      <Route path="/colecionadores/perfil/:id" element={<IsLogged><CollectorsProfile /></IsLogged>} />
+      <Route path="/estatisticas" element={<IsLogged><Statistics /></IsLogged>} />
     </Routes>
   )
 };
