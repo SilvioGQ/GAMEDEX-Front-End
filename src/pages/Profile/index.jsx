@@ -3,17 +3,81 @@ import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
 import { UserContext } from '../../context/UserContext'
-import { BackgroundLight, Container, ListGames, ListGamesFlex, RowWrap } from '../../resource/globalsStyles'
-import { GetUsers } from '../api'
-import { Title, RowBetween } from './styles'
-
+import { BackgroundLight, Container, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
+import { DeleteItem, GetUserById, GetUsers, UpdateUserName, UpdateUserPassword, DeleteUser } from '../api'
+import { CollectorMargin, ProfileImg, UserName, Text } from './styles'
+import StarImg from '../../assets/star.png'
+import JoystickImg from '../../assets/joystick.png'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
-  const userState =JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user'))
+  const [userState, setUserState] = useState();
+  const [editionName, setEditionName] = useState();
+  const [editionPassword, setEditionPassword] = useState();
+  const [hoveringInput,setHoveringInput] = useState(false);
+  const [email, setEmail] = useState(user.email);
+  const [nome, setNome] = useState();
+  const [senha,setSenha] = useState('');
+  const Colletions = async () => {
+    await GetUserById(user.id).then((res) => { setUserState(res.user) })
+  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    Colletions()
+  }, [editionName])
   return (
     <Container>
       <Header selected={'profile'} />
       <BackgroundLight>
+        <CollectorMargin>
+          <ProfileImg src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
+
+            {editionName ? 
+            <>
+             <Input 
+             placeholder="Nome"
+             value={nome}
+             onChange={setNome}
+             hovering={hoveringInput}
+             setHoveringInput={setHoveringInput}
+             />
+             <Text>{userState && userState.email}</Text>
+            </>
+            :
+            <>
+              <UserName>{userState && userState.name}</UserName>
+              <Text>{userState && userState.email}</Text>
+            </>
+            }
+          {editionPassword&&
+            <>
+                       {/* <Input 
+             placeholder="Email"
+             value={email}
+             onChange={setEmail}
+             hovering={hoveringInput}
+             setHoveringInput={setHoveringInput}/> */}
+           <Input 							
+             value={senha}
+             onChange={setSenha}
+             type={'password'}				
+             placeholder="Senha"
+             hovering={hoveringInput}
+             setHoveringInput={setHoveringInput}/>
+            </>
+            }
+          {editionName && <Button text={'Cancelar'} styleType={'white'} onPress={()=>{setEditionName(false); setEditionPassword(false);}} />} 
+          {editionPassword && <Button text={'Cancelar'} styleType={'white'} onPress={()=>{setEditionName(false); setEditionPassword(false);}} />} 
+          <div style={{marginTop:15}}></div>
+          {!editionPassword && <Button text={editionName ? 'Salvar' : 'Editar nome'} onPress={async()=>{if(editionName){await UpdateUserName(nome);setEditionName(false);}else return setEditionName(true)}} />}
+          <div style={{marginTop:15}}></div>
+          {!editionName &&<Button text={editionPassword ? 'Salvar' : 'Editar senha'} onPress={async()=>{if(editionPassword){await UpdateUserPassword(senha);setEditionPassword(false);}else return setEditionPassword(true)}} />}
+          <div style={{marginTop:15}}></div>
+          <Button styleType='back' text={'Excluir conta'} onPress={async()=>{{await DeleteUser(); navigate('/')}}} />
+        </CollectorMargin>
       </BackgroundLight>
     </Container>
   )

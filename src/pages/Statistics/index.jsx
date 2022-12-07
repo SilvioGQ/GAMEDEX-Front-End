@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
-import { BackgroundLight, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
+import { BackgroundLight ,} from '../../resource/globalsStyles'
 import { getGames, GetUserById, GetUsers, MostPossesedItens, MostStaredItens, MostUsersItens } from '../api'
 import { RowBetween } from '../Games/styles'
 import { CollectorMargin, Container, Joystick, Profile, Star, StarRating, Title, UserName } from './styles'
-import StarImg from '../../assets/star.png'
-import JoystickImg from '../../assets/joystick.png'
+
 import Game from '../../components/Game'
 import Arrow from '../../components/Arrow'
 import { VictoryArea, VictoryChart, VictoryAxis, VictoryTheme, VictoryPolarAxis, VictoryBar } from 'victory';
@@ -64,18 +63,6 @@ export default function Statistics() {
     <Container>
       <Header selected={'statistics'} />
       <BackgroundLight>
-        {/* <CollectorMargin>
-          <Profile src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
-          <div style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
-            <UserName>{userState.name}</UserName>
-            <Row>
-              <Star src={StarImg} />
-              <StarRating>24</StarRating>
-              <Star src={JoystickImg} />
-              <Joystick>10</Joystick>
-            </Row>
-          </div>
-        </CollectorMargin> */}
         <h1>Estatísticas globais</h1>
         <h3>Itens mais estrelados</h3>
         <div style={{ width: '70vw' }}>

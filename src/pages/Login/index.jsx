@@ -25,36 +25,6 @@ export default function Login () {
     const user = await CreateUser(nome,email,senha);
     console.log('user',user)
     if(user){
-      userDispatch({
-        type: 'setImg',
-        payload: {
-          img: user.img
-        }
-      });
-      userDispatch({
-        type: "setName",
-        payload: {
-          name: user.name,
-        },
-      });
-      userDispatch({
-        type: "setId",
-        payload: {
-          id: user.id,
-        },
-      });
-      userDispatch({
-        type: "setDataMaster",
-        payload: {
-          is_data_master: user.is_data_master,
-        },
-      });
-      userDispatch({
-        type: "setEmail",
-        payload: {
-          email: user.email,
-        },
-      });
       localStorage.setItem('token', user.token);
       localStorage.setItem('user',JSON.stringify(user));
       navigate('jogos')
@@ -63,36 +33,6 @@ export default function Login () {
   const loginUser = async()=>{
     const user = await LoginUser(email,senha);
     if(user){
-      userDispatch({
-        type: 'setImg',
-        payload: {
-          img: user.img
-        }
-      });
-      userDispatch({
-        type: "setName",
-        payload: {
-          name: user.name,
-        },
-      });
-      userDispatch({
-        type: "setId",
-        payload: {
-          id: user.id,
-        },
-      });
-      userDispatch({
-        type: "setDataMaster",
-        payload: {
-          is_data_master: user.is_data_master,
-        },
-      });
-      userDispatch({
-        type: "setEmail",
-        payload: {
-          email: user.email,
-        },
-      });
       localStorage.setItem('token', user.token);
       localStorage.setItem('user',JSON.stringify(user));
       navigate('jogos')
