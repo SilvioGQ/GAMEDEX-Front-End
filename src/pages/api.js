@@ -4,6 +4,7 @@ import axios from "axios";
 const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
+
 export async function CreateUser(name,email, password) {
     try {
         const response = await axios.post(`${BASE_API}/users`, {
@@ -98,17 +99,23 @@ export async function SearchUsers(id) {
     }
 }
 
-export async function CreateGame(email, password) {
+export async function CreateGame({ name, publisher, genres, img}) {
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("publisher", publisher);
+    formData.append("genre", genres);
+    formData.append("game_img", img);
+
     const requestConfig = {
         headers: {
-            authorization: token,
-        },
-    };
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            Authorization: token,
+        }
+    }
+
     try {
-        const response = await axios.post(`${BASE_API}/games`, {
-            email: email,
-            password: password
-        },requestConfig)
+        const response = await axios.post(`${BASE_API}/games`, formData, requestConfig)
         return response.data;
     } catch (error) {
         return null;
