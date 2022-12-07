@@ -11,7 +11,7 @@ export const DivAll = styled.div`
     display: flex; 
     height: 80vh;
 
-    @media (max-width: 700px) {
+    @media (max-width: 980px) {
         flex-direction: column;
         align-items: center;
     }
@@ -20,7 +20,7 @@ export const DivAll2 = styled.div`
     width: 100%;
     height: 80vh;
     margin-left: 50px;
-    @media (max-width: 700px) {
+    @media (max-width: 980px) {
         margin-left: 20px;
     }
 `;
@@ -78,7 +78,7 @@ export const Evidence = styled.div`
     background-color: ${Colors.Black};
     margin-top: 2vh;
     margin-bottom: 3vh;
-    @media (max-width: 700px) {
+    @media (max-width: 980px) {
         width: 95%;
         height:220px;
     }
@@ -139,7 +139,7 @@ export const GameImg = styled.div`
     border-radius: 5px;
     cursor: pointer;
 
-    @media (max-width: 700px) {
+    @media (max-width: 980px) {
         width: 100%;
         height: 260px;
     }
