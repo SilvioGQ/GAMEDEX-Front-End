@@ -10,6 +10,8 @@ import Button from '../../components/Button'
 import { GameImg, Genres, Genre, GenreDiv, Title, Evidence, StarDiv, StarP } from './styles'
 import EvidenceImg from "../../assets/evidence-tmp.png"
 import { DeleteItem } from "../api"
+import StarIcon from "../../assets/star.png"
+import StarGrayIcon from "../../assets/star-gray.png"
 
 export default function GameInfo() {
     const game = useLocation().state;
@@ -34,21 +36,25 @@ export default function GameInfo() {
                 <div style={{ display: "flex", height: "80vh" }}>
                     <GameImg style={{ backgroundImage: `url(${game.img})` }} />
                     <div style={{ marginLeft: 50, width: "100%", height: "80vh" }}>
-                        <Title>{game.name}</Title>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                            <Title>
+                                <img className='starIcon' src={game.stars_qt > 0 ? StarIcon : StarGrayIcon} /> 
+                                <span className={game.stars_qt > 0 ? "stars" : "noStars"}>{game.stars_qt}</span>
+                                {game.name}
+                            </Title>
+                            {game.games_collection && (
+                                <StarDiv onClick={async()=>await AddStar(game.games_collection.id)}>
+                                    <StarP>Adicionar estrela</StarP>
+                                </StarDiv>
+                            )}
+                        </div>
                         <Genres>
                             {game.genre.split(",").map((genre, key) => {
                                 return <GenreDiv>
                                     <Genre key={key}>{genre.toUpperCase()}</Genre>
                                 </GenreDiv>
                             })}
-                        </Genres>
-                        {game.games_collection && (
-                        <StarDiv onClick={async()=>await AddStar(game.games_collection.id)}>
-                            <StarP>Adicionar estrela</StarP>
-                        </StarDiv>
-                        )}
-                        
-
+                        </Genres>                      
 
                         <Evidence style={{
                             backgroundImage: `url(${game.games_collection ?

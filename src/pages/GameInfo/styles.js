@@ -26,13 +26,14 @@ export const GenreDiv = styled.div`
 `
 
 export const StarDiv = styled.div`
-cursor: pointer;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: ${Colors.Yellow};
     border-radius: 10px;
     width: fit-content;
+    height: fit-content;
     padding-left: .7vw;
     padding-right: .7vw;
 `
@@ -72,6 +73,29 @@ export const StarP = styled.p`
 export const Title = styled.p`
     font-size: 43px;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+
+    .stars, .noStars {
+        margin-right: 10px;
+    }
+
+    .stars {
+        color: ${Colors.Yellow};
+    }
+
+    .noStars {
+        color:  ${Colors.Gray}
+    }
+
+    .starIcon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
 `
 
 export const StarRating = styled.p`
