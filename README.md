@@ -25,28 +25,28 @@ Requisitos básicos
 
 - Deve ser desenvolvido em NodeJS + Express + Sequelize TypeOrm
 
-- Senha criptografada
-- Validação das chamads com JOI ou YUP
-- Sequelize ORM ou TypeOrm
-- Persistência dos dados em um banco PostgreSQL (quem tiver com dificuldades aqui me pede ajuda para não deixar para a última hora).
+- Senha criptografada (v)
+- Validação das chamads com JOI ou YUP (v)
+- Sequelize ORM ou TypeOrm (v)
+- Persistência dos dados em um banco PostgreSQL (quem tiver com dificuldades aqui me pede ajuda para não deixar para a última hora). (v)
 
 - API de consulta paginada e ordenada
-- Soft Delete de perfil
+- Soft Delete de perfil (v)
   - outros usuários não conseguem mais visualizar deste usuário
 - Endpoints de Estatísticas do Usuário em relação ao mundo - no perfil
-- Upload de Imagem (do perfil do usuário e/ou do item colecionável)
-- Autorização - apenas o usuário pode marcar sua própria coleção
+- Upload de Imagem (do perfil do usuário e/ou do item colecionável) (v)
+- Autorização - apenas o usuário pode marcar sua própria coleção (v)
 
 - Dupla
   - Ranking mundo (quem tem mais itens (5 primeiros), quais os itens que mais pessoas possuem (5 primeiros),
 - Trio
   - Itens de quem faz em dupla + os itens abaixo
-  - Deve existir um DataMaster, que pode inserir novos itens na coleção.
+  - Deve existir um DataMaster, que pode inserir novos itens na coleção. (v)
   - Estrelar o item da coleção de alguém. Nas estatísticas devem aparecer os itens mais estrelados.
 
 **Frontend**
 
-- React + Styled Components
+- React + Styled Components (v)
 - Listagens paginadas
 - Obviamente, todas as ações do backend devem estar mapeadas
 
@@ -55,11 +55,3 @@ Requisitos básicos
 - Trio
   - Ações do backend dupla e trio devem estar implementadas aqui.
   - Apresentação das estatísticas de maneira gráfica (Victory.js do Formidable)
-
-Sobre as possibilidades…
-
-Vocês podem implementar quaisquer tipos de itens, desde que contenham alguns atributos associados a ele, por exemplo, em pokédex, é apresentado o tipo do pokémon, a cor, nome, dentre outros. Pode ser uma AnyDex de copos de cerveja e, dentro das estatísticas, quantos usuários tem um copo Stanley. Camisetas de super herói, jogos de videogame, produtos de estética, livros, música, etc..
-
-A imaginação não tem limites!!! Mas, porém, contudo, entretanto, todavia, nós temos pouco tempo, então não complique demais.
-
-Data de entrega: Primeira semana de Dezembro… sem prorrogação, prazos legais para entregas de notas e coisas do tipo.

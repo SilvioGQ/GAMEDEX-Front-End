@@ -10,8 +10,9 @@ import Button from '../../components/Button'
 import { GameImg, Genres, Genre, GenreDiv, Title, Evidence, StarDiv, StarP, StarPng, DivAll, DivAll2 } from './styles'
 import EvidenceImg from "../../assets/evidence-tmp.png"
 import { DeleteItem } from "../api"
-import Star from '../../assets/star.png'
-import StarGray from '../../assets/starGray.png'
+import StarIcon from "../../assets/star.png"
+import StarGrayIcon from "../../assets/star-gray.png"
+
 export default function GameInfo() {
     const game = useLocation().state;
     const userState =JSON.parse(localStorage.getItem('user'))
@@ -35,8 +36,20 @@ export default function GameInfo() {
             <BackgroundLight style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", width: "96%" }}>
                 <DivAll>
                     <GameImg style={{ backgroundImage: `url(${game.img})` }} />
-                    <DivAll2 style={{  }}>
-                        <Title>{game.name}</Title>
+                    <DivAll2>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                            <Title>
+                                <img className='starIcon' src={game.stars_qt > 0 ? StarIcon : StarGrayIcon} /> 
+                                <span className={game.stars_qt > 0 ? "stars" : "noStars"}>{game.stars_qt}</span>
+                                {game.name}
+                            </Title>
+                            {game.games_collection && (
+                                <StarDiv onClick={async()=>{const res = await AddStar(game.games_collection.id);if(res) return setAnimation(true); else return alert('Você já favoritou este item.')}}>
+                                    <StarPng src={animation ? StarIcon : StarGrayIcon}/>
+                                    <StarP>Adicionar estrela</StarP>
+                                </StarDiv>
+                            )}
+                        </div>
                         <Genres>
                             {game.genre.split(",").map((genre, key) => {
                                 return <GenreDiv>
@@ -44,14 +57,6 @@ export default function GameInfo() {
                                 </GenreDiv>
                             })}
                         </Genres>
-                        {game.games_collection && (
-                        <div style={{display:'flex'}}>
-                        <StarDiv onClick={async()=>{const res = await AddStar(game.games_collection.id);if(res) return setAnimation(true); else return alert('Você já favoritou este item.')}}>
-                        <StarPng src={animation ? Star : StarGray}/>
-                            <StarP>Adicionar estrela</StarP>
-                        </StarDiv>
-                        </div>
-                        )}
 
 
                         <Evidence style={{
