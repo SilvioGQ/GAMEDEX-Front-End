@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const BASE_API = "https://gamedex-api-teste.up.railway.app";
-const BASE_API = "http://localhost:3001";
+const BASE_API = "https://gamedex-api-teste.up.railway.app";
+//const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
 
