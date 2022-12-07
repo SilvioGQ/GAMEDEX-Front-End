@@ -10,6 +10,7 @@ import Collectors from "./pages/Collectors";
 import Statistics from "./pages/Statistics";
 import Login from "./pages/Login";
 import CollectorsProfile from "./pages/CollectionsProfile";
+import Profile from "./pages/Profile";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
       <Route path="/colecionadores" element={<Collectors />} />
       <Route path="/colecionadores/perfil/:id" element={<CollectorsProfile />} />
       <Route path="/estatisticas" element={<Statistics />} />
+      <Route path="/perfil" element={<Profile/>} />
     </Routes>
   )
 };

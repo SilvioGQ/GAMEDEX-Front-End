@@ -32,6 +32,12 @@ export const Collectors = styled.p`
     color: ${props=>props.selected === 'collectors' ? '#fff' : '#a7a7a7'};
 `
 
+export const Profile = styled.p`
+    font-size: 16px;
+    margin-left: 15px;
+    color: ${props=>props.selected === 'profile' ? '#fff' : '#a7a7a7'};
+`
+
 export const Statistics = styled.p`
     font-size: 16px;
     margin-left: 15px;

@@ -13,8 +13,10 @@ import Game from '../../components/Game'
 import Arrow from '../../components/Arrow'
 import { VictoryArea, VictoryChart, VictoryAxis, VictoryTheme, VictoryPolarAxis, VictoryBar } from 'victory';
 import { UserContext } from '../../context/UserContext'
+import { useWindowDimensions } from '../../constants'
 export default function Statistics() {
   const navigate = useNavigate();
+  const { height, width } = useWindowDimensions();
   const userState = JSON.parse(localStorage.getItem('user'))
   const [hoveringInput, setHoveringInput] = useState(false);
   const [pesquisar, setPesquisar] = useState('');
@@ -36,7 +38,7 @@ export default function Statistics() {
       let array = [];
       console.log(i);
       for (let c = 0; i.items.length > c; c++) {
-        array.push({ x: i.items[c].game_name, y: i.items[c].game_qt })
+        array.push({ x: i.items[c].game_name, y: Number(i.items[c].game_qt) })
       }
       console.log('teins', topItens);
       setTopItens(array);
@@ -45,7 +47,7 @@ export default function Statistics() {
       let array = [];
       console.log(i);
       for (let c = 0; i.items.length > c; c++) {
-        array.push({ x: i.items[c].game_name, y: i.items[c].stars })
+        array.push({ x: i.items[c].game_name, y: Number(i.items[c].stars) })
       }
       setTopUsersStar(array);
     });
@@ -62,7 +64,7 @@ export default function Statistics() {
     <Container>
       <Header selected={'statistics'} />
       <BackgroundLight>
-        <CollectorMargin>
+        {/* <CollectorMargin>
           <Profile src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
           <div style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
             <UserName>{userState.name}</UserName>
@@ -73,18 +75,23 @@ export default function Statistics() {
               <Joystick>10</Joystick>
             </Row>
           </div>
-        </CollectorMargin>
-        <p>Itens mais estrelados</p>
-        <div style={{ height: 520, width: 900 }}>
+        </CollectorMargin> */}
+        <h1>Estatísticas globais</h1>
+        <h3>Itens mais estrelados</h3>
+        <div style={{ width: '70vw' }}>
           {topUsersStar.length > 0 &&
             <VictoryChart
-              width={1000}
-              height={500}
+              width={1200}
+              height={width > 1100 ? 500 : 800}
               minDomain={{ y: 0 }}
               domainPadding={{ x: 20 }}
               theme={VictoryTheme.material}
             >
               <VictoryBar
+              animate={{
+                duration: 2500,
+                onLoad: { duration: 2000 }
+              }}
                 style={{ data: { fill: "yellow" } }}
                 data={topUsersStar}
                 barRatio={0.3}
@@ -92,17 +99,21 @@ export default function Statistics() {
             </VictoryChart>
           }
         </div>
-          <p>Jogos mais populares</p>
-        <div style={{ height: 520, width: 900 }}>
+          <h3>Jogos mais populares</h3>
+        <div style={{ height: 520, width: '70vw' }}>
           {topItens.length > 0 &&
             <VictoryChart
-              width={1000}
-              height={500}
+              width={1200}
+              height={width > 1100 ? 500 : 1000}
               minDomain={{ y: 0 }}
               domainPadding={{ x: 20 }}
               theme={VictoryTheme.material}
             >
               <VictoryBar
+              animate={{
+                duration: 2500,
+                onLoad: { duration: 3000 }
+              }}
                 style={{ data: { fill: "blue" } }}
                 data={topItens}
                 barRatio={0.3}
@@ -110,8 +121,8 @@ export default function Statistics() {
             </VictoryChart>
           }
         </div>
-        <p>Estatísticas globais</p>
-        <p>Usuários com mais jogos</p>
+
+        <h3>Usuários com mais jogos</h3>
         {topUsersItens && topUsersItens.map((i) => { return <Collector key={i.id} i={i} /> })}
 
       </BackgroundLight>

@@ -6,6 +6,7 @@ import {
     Game,
     Games,
     Logo,
+    Profile,
     RowAround,
     Statistics,
     Title
@@ -13,12 +14,14 @@ import {
 import LogoImage from '../../assets/logo.png'
 import collectorsWhite from '../../assets/collectorsWhite.png'
 import gamesWhite from '../../assets/gamesWhite.png'
+import PersonWhite from '../../assets/PersonWhite.png'
 import statisticsWhite from '../../assets/statisticsWhite.png'
 import collectorsGray from '../../assets/collectorsGray.png'
 import gamesGray from '../../assets/gamesGray.png'
 import statisticsGray from '../../assets/statisticsGray.png'
 import logoutIconWhite from '../../assets/logoutIconWhite.png'
 import logoutIconGray from '../../assets/logoutIconGray.png'
+import PersonGray from '../../assets/PersonGray.png'
 import {Link, useNavigate} from 'react-router-dom'
 import { useWindowDimensions } from '../../constants'
 export default function Header({selected}) {
@@ -53,7 +56,13 @@ export default function Header({selected}) {
                         : statisticsGray}/>
                     {width > 850 && (<Statistics selected={selected}>Estatísticas</Statistics>)}
                 </RowPointer>
-                
+                <RowPointer onClick={() => navigate('/perfil')}>
+                    <Logo
+                        src={selected === 'profile'
+                        ? PersonWhite
+                        : PersonGray}/>
+               {width > 850 && (<Profile selected={selected}>Perfil</Profile>)}
+                </RowPointer>
                 <RowPointer onClick={() => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');

@@ -6,7 +6,7 @@ export const Container = styled.div`
     display: flex;
     padding: 16px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     cursor: pointer;
     background-color: ${Colors.Black};
     border-radius: 4px;

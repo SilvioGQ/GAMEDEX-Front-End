@@ -7,13 +7,15 @@ import Search from '../../components/Search'
 import { Container, BackgroundLight, ListGames, Row } from '../../resource/globalsStyles'
 import { AddStar, getGames } from '../api'
 import Button from '../../components/Button'
-import { GameImg, Genres, Genre, GenreDiv, Title, Evidence, StarDiv, StarP } from './styles'
+import { GameImg, Genres, Genre, GenreDiv, Title, Evidence, StarDiv, StarP, StarPng, DivAll, DivAll2 } from './styles'
 import EvidenceImg from "../../assets/evidence-tmp.png"
 import { DeleteItem } from "../api"
-
+import Star from '../../assets/star.png'
+import StarGray from '../../assets/starGray.png'
 export default function GameInfo() {
     const game = useLocation().state;
     const userState =JSON.parse(localStorage.getItem('user'))
+    const [animation, setAnimation] = useState()
     const navigate = useNavigate();
     console.log(game)
 
@@ -31,9 +33,9 @@ export default function GameInfo() {
         <Container>
             <Header selected={'games'} />
             <BackgroundLight style={{ paddingTop: "0", paddingLeft: "0", paddingBottom: "0", width: "96%" }}>
-                <div style={{ display: "flex", height: "80vh" }}>
+                <DivAll>
                     <GameImg style={{ backgroundImage: `url(${game.img})` }} />
-                    <div style={{ marginLeft: 50, width: "100%", height: "80vh" }}>
+                    <DivAll2 style={{  }}>
                         <Title>{game.name}</Title>
                         <Genres>
                             {game.genre.split(",").map((genre, key) => {
@@ -43,11 +45,13 @@ export default function GameInfo() {
                             })}
                         </Genres>
                         {game.games_collection && (
-                        <StarDiv onClick={async()=>await AddStar(game.games_collection.id)}>
+                        <div style={{display:'flex'}}>
+                        <StarDiv onClick={async()=>{const res = await AddStar(game.games_collection.id);if(res) return setAnimation(true); else return alert('Você já favoritou este item.')}}>
+                        <StarPng src={animation ? Star : StarGray}/>
                             <StarP>Adicionar estrela</StarP>
                         </StarDiv>
+                        </div>
                         )}
-                        
 
 
                         <Evidence style={{
@@ -67,8 +71,8 @@ export default function GameInfo() {
                             {!game.games_collection && <Button text={'Adicionar à coleção'} onPress={() => navigate(`/jogos/jogo/${game.id}/adicionar`, { state: game })} />}
                             {game.games_collection && game.games_collection.id_user === userState.id &&<Button text={'Remover da coleção'} styleType={"white"} onPress={() => { deleteItem() }} />}
                         </div>
-                    </div>
-                </div>
+                    </DivAll2>
+                </DivAll>
             </BackgroundLight>
         </Container>
 
