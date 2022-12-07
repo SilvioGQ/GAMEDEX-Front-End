@@ -26,18 +26,39 @@ export const GenreDiv = styled.div`
 
 export const Genres = styled.div`
     display: flex;
-    width: 100%;
+    width: 230px;
     gap: 1vw;
     flex-wrap: wrap;
 `
 
 export const Title = styled.p`
-    width: 100%;
+    width: 230px;
     font-size: 14px;
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; 
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid black; */
+
+    .stars, .noStars {
+        margin-right: 10px;
+    }
+
+    .stars {
+        color: ${Colors.Yellow};
+    }
+
+    .noStars {
+        color:  ${Colors.Gray}
+    }
+
+    .starIcon {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
 `
 
 export const StarRating = styled.p`
