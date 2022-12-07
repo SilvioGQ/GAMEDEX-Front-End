@@ -142,6 +142,7 @@ export const GameImg = styled.div`
     @media (max-width: 980px) {
         width: 100%;
         height: 260px;
+        background-size: contain;
     }
 `
 export const Star = styled.img`
