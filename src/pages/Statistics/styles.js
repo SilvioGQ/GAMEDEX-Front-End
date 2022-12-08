@@ -41,7 +41,6 @@ export const StarRating = styled.p`
     color: ${Colors.Yellow};
     margin-top: 11px;
     margin-left: 5px;
-    cursor: pointer;
 `
 
 export const Joystick = styled.p`
@@ -51,10 +50,14 @@ export const Joystick = styled.p`
     cursor: pointer;
 `
 
-export const Profile = styled.img`
+export const Profile = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 50px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
 `
 export const Star = styled.img`
     margin-top: 10px;

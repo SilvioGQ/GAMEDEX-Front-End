@@ -41,12 +41,12 @@ export default function CollectionsProfile() {
           <Profile src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
           <div style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
             <UserName>{colecionador && colecionador.name}</UserName>
-            <Row>
+            {/* <Row>
               <Star src={StarImg} />
               <StarRating>24</StarRating>
               <Star src={JoystickImg} />
               <Joystick>10</Joystick>
-            </Row>
+            </Row> */}
           </div>
         </CollectorMargin>
         <p>Jogos</p>

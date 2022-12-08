@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import Collector from '../../components/Collector'
 import Header from '../../components/Header'
 import Search from '../../components/Search'
-import { BackgroundLight ,} from '../../resource/globalsStyles'
+import { BackgroundLight, ListEvidences, ListGamesFlex, Row ,} from '../../resource/globalsStyles'
 import { getGames, GetUserById, GetUsers, MostPossesedItens, MostStaredItens, MostUsersItens } from '../api'
 import { RowBetween } from '../Games/styles'
 import { CollectorMargin, Container, Joystick, Profile, Star, StarRating, Title, UserName } from './styles'
-
+import Person from '../../assets/PersonWhite.png'
+import StarImg from '../../assets/star.png'
 import Game from '../../components/Game'
 import Arrow from '../../components/Arrow'
 import { VictoryArea, VictoryChart, VictoryAxis, VictoryTheme, VictoryPolarAxis, VictoryBar } from 'victory';
@@ -35,23 +36,23 @@ export default function Statistics() {
     await MostUsersItens().then((i) => setTopUsersItens(i.users));
     await MostPossesedItens().then((i) => {
       let array = [];
-      console.log(i);
       for (let c = 0; i.items.length > c; c++) {
         array.push({ x: i.items[c].game_name, y: Number(i.items[c].game_qt) })
       }
-      console.log('teins', topItens);
       setTopItens(array);
     });
     await MostStaredItens().then((i) =>{
-      let array = [];
+      setTopUsersStar(i.items);
       console.log(i);
-      for (let c = 0; i.items.length > c; c++) {
-        array.push({ x: i.items[c].game_name, y: Number(i.items[c].stars) })
-      }
-      setTopUsersStar(array);
+      // let array = [];
+      // console.log(i);
+      // for (let c = 0; i.items.length > c; c++) {
+      //   array.push({ x: i.items[c].game_name, y: Number(i.items[c].stars) })
+      // }
+      // setTopUsersStar(array);
     });
   };
-  console.log(topItens)
+  console.log(topUsersStar)
   const GetGames = async () => {
     await getGames(7, pagination.offset, '').then((res) => { setGames(res.games); })
   }
@@ -64,9 +65,30 @@ export default function Statistics() {
       <Header selected={'statistics'} />
       <BackgroundLight>
         <h1>Estatísticas globais</h1>
-        <h3>Itens mais estrelados</h3>
+        <h3>Itens mais estrelados (evidências)</h3>
         <div style={{ width: '70vw' }}>
-          {topUsersStar.length > 0 &&
+          <ListEvidences>
+
+          {topUsersStar && topUsersStar.map((i)=>{
+            console.log(i)
+            return (
+            <CollectorMargin>
+              <Profile style={{ backgroundImage: `url(${i.evidence_img})` }}/>
+              <div style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
+                <UserName>{i.game_name}</UserName>
+                <Row>
+                  <Star src={StarImg} />
+                  <StarRating>{i.stars}</StarRating>
+                  <Star src={Person} />
+                  <Joystick>{i.id_user}</Joystick>
+                </Row>
+              </div>
+            </CollectorMargin>
+            )
+          })}
+          </ListEvidences>
+       
+          {/* {topUsersStar.length > 0 &&
             <VictoryChart
               width={1200}
               height={width > 1100 ? 500 : 800}
@@ -84,7 +106,7 @@ export default function Statistics() {
                 barRatio={0.3}
               />
             </VictoryChart>
-          }
+          } */}
         </div>
           <h3>Jogos mais populares</h3>
         <div style={{ height: 520, width: '70vw' }}>

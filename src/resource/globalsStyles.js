@@ -108,3 +108,19 @@ export const ListGamesFlex = styled.div`
     grid-column-gap: 4vw;
     grid-row-gap: 3vh;
 `;
+
+export const ListEvidences = styled.div`
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 35px;
+    @media (max-width: 1600px) {
+        grid-template-columns: 1fr 1fr
+    }
+    @media (max-width: 1100px) {
+        grid-template-columns: 1fr;
+        align-self: center;
+    }
+    grid-column-gap: 3vw;
+    grid-row-gap: 1vh;
+`;
