@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const BASE_API = "https://gamedex-api-teste.up.railway.app";
+// const BASE_API = "https://gamedex-api-teste.up.railway.app";
 const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
@@ -36,6 +36,26 @@ export async function GetUserById(id) {
     };
     try {
         const response = await axios.get(`${BASE_API}/users/${id}`,requestConfig) 
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function UpdateUserImg(file) {
+    let formData = new FormData();
+    formData.append("img", file);
+    
+    const requestConfig = {
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            Authorization: token,
+        }
+    }
+
+    try {
+        const response = await axios.put(`${BASE_API}/users/`, formData, requestConfig) 
         return response.data;
     } catch (error) {
         return null;

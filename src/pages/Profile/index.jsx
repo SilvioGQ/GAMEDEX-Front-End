@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import Search from '../../components/Search'
 import { UserContext } from '../../context/UserContext'
 import { BackgroundLight, Container, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
-import { DeleteItem, GetUserById, GetUsers, UpdateUserName, UpdateUserPassword, DeleteUser } from '../api'
+import { DeleteItem, GetUserById, GetUsers, UpdateUserImg, UpdateUserName, UpdateUserPassword, DeleteUser } from '../api'
 import { CollectorMargin, ProfileImg, UserName, Text } from './styles'
 import StarImg from '../../assets/star.png'
 import JoystickImg from '../../assets/joystick.png'
@@ -21,19 +21,40 @@ export default function Profile() {
   const [email, setEmail] = useState(user.email);
   const [nome, setNome] = useState();
   const [senha,setSenha] = useState('');
+  const [image, setImage] = useState()
+
   const Colletions = async () => {
     await GetUserById(user.id).then((res) => { setUserState(res.user) })
   }
+
   const navigate = useNavigate();
+
   useEffect(() => {
     Colletions()
   }, [editionName])
+
+  const updateImg = async () => {
+	let res = await UpdateUserImg(image)
+	if(!res) { alert("Ocorreu um erro ao salvar a nova imagem de perfil"); setImage(null) }
+  }
+
+  useEffect(() => {
+	if(image){
+		updateImg();
+	}
+  }, [image])
+
+  console.log(image)
+  
   return (
     <Container>
       <Header selected={'profile'} />
       <BackgroundLight>
         <CollectorMargin>
-          <ProfileImg src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
+			<label htmlFor="avatar">
+          		<ProfileImg style={{ backgroundImage: `url(${user && user.img && !image ? user.img : (image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
+			</label>
+		  	<input type="file" required name="avatar" id="avatar" defaultValue={image} onChange={(e) => setImage(e.target.files[0])} />
 
             {editionName ? 
             <>

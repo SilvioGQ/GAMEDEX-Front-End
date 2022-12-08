@@ -24,6 +24,14 @@ export const CollectorMargin = styled.div`
     margin: 5px 15px 25px 15px;
     align-items: center;
     align-self: center;
+
+    label {
+        cursor: pointer;
+    }
+
+    input#avatar {
+        display: none;
+    }
 `;
 export const Container = styled.div`
     display: flex;
@@ -63,9 +71,11 @@ export const Text = styled.p`
     cursor: pointer;
 `
 
-export const ProfileImg = styled.img`
+export const ProfileImg = styled.div`
     width: 100px;
     height: 100px;
+    background-position: center;
+    background-size: cover;
     border-radius: 50px;
     align-self: center;
 `

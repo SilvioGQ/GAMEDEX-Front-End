@@ -16,7 +16,7 @@ import StarGrayIcon from "../../assets/star-gray.png"
 export default function GameInfo() {
     const game = useLocation().state;
     const userState =JSON.parse(localStorage.getItem('user'))
-    const [animation, setAnimation] = useState()
+    const [animation, setAnimation] = useState(game.hasStaredItem)
     const navigate = useNavigate();
     console.log(game)
 
@@ -46,7 +46,7 @@ export default function GameInfo() {
                             {game.games_collection && (
                                 <StarDiv onClick={async()=>{const res = await AddStar(game.games_collection.id);if(res) return setAnimation(true); else return alert('Você já favoritou este item.')}}>
                                     <StarPng src={animation ? StarIcon : StarGrayIcon}/>
-                                    <StarP>Adicionar estrela</StarP>
+                                    {!animation && <StarP>Adicionar estrela</StarP>}
                                 </StarDiv>
                             )}
                         </div>
