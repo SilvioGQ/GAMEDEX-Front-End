@@ -14,11 +14,16 @@ export default function Collectors() {
   const [pesquisar, setPesquisar] = useState('');
   const [colecionadores, setColecionadores] = useState('');
   const [pagination, setPagination] = useState({
-    limit: 10,
+    limit: 1,
     offset: 0
-})
+  })
+  const [totalColecionadores, settotalColecionadores] = useState(0)
   const Colletions = async() => {
-    await GetUsers(pagination.limit,pagination.offset,pesquisar).then((res) => { setColecionadores(res.users.filter((i)=>i.id !== userState.id));})
+    await GetUsers(pagination.limit,pagination.offset,pesquisar).then((res) => { 
+      console.log(res)
+      setColecionadores(res.users);
+      settotalColecionadores(res.count)
+    })
 }
 useEffect(() => {
   Colletions()
@@ -42,6 +47,11 @@ useEffect(() => {
           {colecionadores && colecionadores.map((i)=>{ return <Collector key={i.id} i={i}/>})}
         </ListGamesFlex>
       </BackgroundLight>
+      <div style={{ display: "flex", width: "30%", gap: "1vw" }}>
+              {pagination.offset > 0 && <p onClick={() => setPagination({ ...pagination, offset: pagination.offset-pagination.limit})}>{"<"} Anterior</p>}
+              <p>Página {(pagination.offset/pagination.limit)+1}</p>
+              {totalColecionadores > pagination.offset+pagination.limit  && <p onClick={() => setPagination({ ...pagination, offset: pagination.offset+pagination.limit})}>Proximo {">"}</p>}
+      </div>
     </Container>
   )
 }
