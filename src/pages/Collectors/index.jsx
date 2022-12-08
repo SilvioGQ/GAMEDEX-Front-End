@@ -20,7 +20,6 @@ export default function Collectors() {
   const Colletions = async() => {
     await GetUsers(pagination.limit,pagination.offset,pesquisar).then((res) => { setColecionadores(res.users.filter((i)=>i.id !== userState.id));})
 }
-console.log(colecionadores)
 useEffect(() => {
   Colletions()
 }, [pagination, pesquisar])

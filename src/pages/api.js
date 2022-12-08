@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// const BASE_API = "https://gamedex-api-teste.up.railway.app";
+//const BASE_API = "https://gamedex-api-teste.up.railway.app";
 const BASE_API = "http://localhost:3001";
 
 const token = localStorage.getItem('token')
@@ -108,7 +108,7 @@ export async function DeleteUser(id) {
     }
 }
 
-export async function GetUsers({limit=10,offset=0,search}) {
+export async function GetUsers(limit=10,offset=0,search) {
     const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
