@@ -80,7 +80,7 @@ export default function Statistics() {
                   <Star src={StarImg} />
                   <StarRating>{i.stars}</StarRating>
                   <Star src={Person} />
-                  <Joystick>{i.id_user}</Joystick>
+                  <Joystick>{i.user_name}</Joystick>
                 </Row>
               </div>
             </CollectorMargin>
