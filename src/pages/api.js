@@ -29,6 +29,7 @@ export async function LoginUser(email, password) {
     }
 }
 export async function GetUserById(id) {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -42,10 +43,12 @@ export async function GetUserById(id) {
     }
 }
 
-export async function UpdateUserImg(file) {
+export async function UpdateUser(file,name,password) {
+    const token = localStorage.getItem('token')
     let formData = new FormData();
-    formData.append("img", file);
-    
+    if(file)formData.append("img", file);
+    if(name) formData.append("name", name);
+    if(password) formData.append("password", password);
     const requestConfig = {
         headers: {
             Accept: 'application/json',
@@ -53,7 +56,6 @@ export async function UpdateUserImg(file) {
             Authorization: token,
         }
     }
-
     try {
         const response = await axios.put(`${BASE_API}/users/`, formData, requestConfig) 
         return response.data;
@@ -62,39 +64,9 @@ export async function UpdateUserImg(file) {
     }
 }
 
-export async function UpdateUserName(name) {
-    const requestConfig = {
-        headers: {
-            authorization: token,
-        },
-    };
-    try {
-        const response = await axios.put(`${BASE_API}/users/`,{
-            name:name
-        },requestConfig) 
-        return response.data;
-    } catch (error) {
-        return null;
-    }
-}
-
-export async function UpdateUserPassword(password) {
-    const requestConfig = {
-        headers: {
-            authorization: token,
-        },
-    };
-    try {
-        const response = await axios.put(`${BASE_API}/users/`,{
-            password:password
-        },requestConfig) 
-        return response.data;
-    } catch (error) {
-        return null;
-    }
-}
 
 export async function DeleteUser(id) {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -124,6 +96,7 @@ export async function GetUsers(limit=10,offset=0,search) {
 }
 
 export async function SearchUsers(id) {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -138,6 +111,7 @@ export async function SearchUsers(id) {
 }
 
 export async function CreateGame({ name, publisher, genres, img}) {
+    const token = localStorage.getItem('token')
     let formData = new FormData();
     formData.append("name", name);
     formData.append("publisher", publisher);
@@ -176,6 +150,7 @@ export async function getGames(limit=10, offset=0, search=null) {
 }
 
 export async function AddToCollection(id_game, evidence) {
+    const token = localStorage.getItem('token')
     let formData = new FormData();
     formData.append("evidence_img", evidence);
     formData.append("id_game", id_game);
@@ -267,6 +242,7 @@ export async function DeleteStar(id) {
 }
 
 export async function MostStaredItens() {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -280,6 +256,7 @@ export async function MostStaredItens() {
     }
 }
 export async function MostPossesedItens() {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,
@@ -293,6 +270,7 @@ export async function MostPossesedItens() {
     }
 }
 export async function MostUsersItens() {
+    const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
             authorization: token,

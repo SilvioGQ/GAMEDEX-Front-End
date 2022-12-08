@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import Search from '../../components/Search'
 import { UserContext } from '../../context/UserContext'
 import { BackgroundLight, Container, ListGames, ListGamesFlex, Row, RowWrap } from '../../resource/globalsStyles'
-import { DeleteItem, GetUserById, GetUsers, UpdateUserImg, UpdateUserName, UpdateUserPassword, DeleteUser } from '../api'
+import { DeleteItem, GetUserById, GetUsers, UpdateUser, DeleteUser } from '../api'
 import { CollectorMargin, ProfileImg, UserName, Text } from './styles'
 import StarImg from '../../assets/star.png'
 import JoystickImg from '../../assets/joystick.png'
@@ -18,33 +18,26 @@ export default function Profile() {
   const [editionName, setEditionName] = useState();
   const [editionPassword, setEditionPassword] = useState();
   const [hoveringInput,setHoveringInput] = useState(false);
-  const [email, setEmail] = useState(user.email);
-  const [nome, setNome] = useState();
-  const [senha,setSenha] = useState('');
-  const [image, setImage] = useState()
+  const [nome, setNome] = useState(null);
+  const [senha,setSenha] = useState(null);
+  const [image, setImage] = useState(null)
 
-  const Colletions = async () => {
-    await GetUserById(user.id).then((res) => { setUserState(res.user) })
+  const getUser = async () => {
+    await GetUserById(user.id).then((res) => { 
+      setUserState(res.user)
+    })
   }
 
   const navigate = useNavigate();
-
+  
   useEffect(() => {
-    Colletions()
-  }, [editionName])
+      getUser()
+  }, [])
+  
 
-  const updateImg = async () => {
-	let res = await UpdateUserImg(image)
-	if(!res) { alert("Ocorreu um erro ao salvar a nova imagem de perfil"); setImage(null) }
+  const updateUser = async ()=>{
+    if( image|| nome|| senha) await UpdateUser(image,nome,senha)
   }
-
-  useEffect(() => {
-	if(image){
-		updateImg();
-	}
-  }, [image])
-
-  console.log(image)
   
   return (
     <Container>
@@ -52,7 +45,7 @@ export default function Profile() {
       <BackgroundLight>
         <CollectorMargin>
 			<label htmlFor="avatar">
-          		<ProfileImg style={{ backgroundImage: `url(${user && user.img && !image ? user.img : (image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
+          	<ProfileImg style={{ backgroundImage: `url(${userState && userState.img && !image ? userState.img : (image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
 			</label>
 		  	<input type="file" required name="avatar" id="avatar" defaultValue={image} onChange={(e) => setImage(e.target.files[0])} />
 
@@ -93,10 +86,13 @@ export default function Profile() {
           {editionName && <Button text={'Cancelar'} styleType={'white'} onPress={()=>{setEditionName(false); setEditionPassword(false);}} />} 
           {editionPassword && <Button text={'Cancelar'} styleType={'white'} onPress={()=>{setEditionName(false); setEditionPassword(false);}} />} 
           <div style={{marginTop:15}}></div>
-          {!editionPassword && <Button text={editionName ? 'Salvar' : 'Editar nome'} onPress={async()=>{if(editionName){await UpdateUserName(nome);setEditionName(false);}else return setEditionName(true)}} />}
+          {!editionPassword && <Button text={editionName ? 'Salvar' : 'Editar nome'} onPress={async()=>{if(editionName){ setNome(nome);setEditionName(false);}else return setEditionName(true)}} />}
           <div style={{marginTop:15}}></div>
-          {!editionName &&<Button text={editionPassword ? 'Salvar' : 'Editar senha'} onPress={async()=>{if(editionPassword){await UpdateUserPassword(senha);setEditionPassword(false);}else return setEditionPassword(true)}} />}
+          {!editionName &&<Button text={editionPassword ? 'Salvar' : 'Editar senha'} onPress={async()=>{if(editionPassword){ setSenha(senha);setEditionPassword(false);}else return setEditionPassword(true)}} />}
           <div style={{marginTop:15}}></div>
+          
+          <Button text={'Salvar'} onPress={async()=>{{await updateUser(); navigate('/jogos')}}} />
+
           <Button styleType='back' text={'Excluir conta'} onPress={async()=>{{await DeleteUser(); navigate('/')}}} />
         </CollectorMargin>
       </BackgroundLight>
