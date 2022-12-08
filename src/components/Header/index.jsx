@@ -35,7 +35,7 @@ export default function Header({selected}) {
             </Row>
             
             <RowAround>
-                <RowPointer onClick={() => navigate('/jogos/novo')}>
+                <RowPointer onClick={() => navigate('/colecionadores')}>
                     <Logo
                         src={selected === 'collectors'
                         ? collectorsWhite
