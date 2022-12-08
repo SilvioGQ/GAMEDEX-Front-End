@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Collector ({i}) {
   const navigate = useNavigate();
   return(
-    <Container onClick={()=>navigate(`perfil/${i.id}`)}>
+    <Container onClick={()=>navigate(`/colecionadores/perfil/${i.id}`)}>
       <Profile src={ i.img ? i.img:'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg'}/>
       <div style={{display:'flex', flexDirection:'column',margin:0}}>
         <UserName>{i.name}</UserName>
