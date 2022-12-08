@@ -38,7 +38,7 @@ export default function CollectionsProfile() {
       <Header selected={'collectors'} />
       <BackgroundLight>
         <CollectorMargin>
-          <Profile src='https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg' />
+          <Profile src={ colecionador.img ?colecionador.img:'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg'}/>
           <div style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
             <UserName>{colecionador && colecionador.name}</UserName>
             {/* <Row>
