@@ -249,7 +249,7 @@ export async function AddStar(id) {
     }
 }
 
-export async function DelteStar(id) {
+export async function DeleteStar(id) {
     const token = localStorage.getItem('token')
     const requestConfig = {
         headers: {
@@ -257,7 +257,7 @@ export async function DelteStar(id) {
         },
     };
     try {
-        const response = await axios.delete(`${BASE_API}/stars`, {
+        const response = await axios.post(`${BASE_API}/stars/delete`, {
             id_collection: id
         },requestConfig)
         return response.data;

@@ -9,7 +9,7 @@ import { AddStar, getGames } from '../api'
 import Button from '../../components/Button'
 import { GameImg, Genres, Genre, GenreDiv, Title, Evidence, StarDiv, StarP, StarPng, DivAll, DivAll2 } from './styles'
 import EvidenceImg from "../../assets/evidence-tmp.png"
-import { DeleteItem } from "../api"
+import { DeleteItem,DeleteStar } from "../api"
 import StarIcon from "../../assets/star.png"
 import StarGrayIcon from "../../assets/star-gray.png"
 
@@ -18,7 +18,6 @@ export default function GameInfo() {
     const userState =JSON.parse(localStorage.getItem('user'))
     const [animation, setAnimation] = useState(game.hasStaredItem)
     const navigate = useNavigate();
-    console.log(game)
 
     const deleteItem = async () => {
         const res = await DeleteItem(game.games_collection.id)
@@ -28,6 +27,20 @@ export default function GameInfo() {
         } else {
             alert("Ocorreu um erro ao remover este item da coleção...")
         }
+    }
+
+    const handleStarDiv=async ()=>{
+        if(!game.hasStaredItem){
+            await AddStar(game.games_collection.id);
+            game.hasStaredItem=!game.hasStaredItem
+            return setAnimation(true); 
+        }
+        else{
+            await DeleteStar(game.games_collection.id)
+            game.hasStaredItem=!game.hasStaredItem
+            return setAnimation(false); 
+        }
+        
     }
 
     return (
@@ -44,7 +57,7 @@ export default function GameInfo() {
                                 {game.name}
                             </Title>
                             {game.games_collection && (
-                                <StarDiv onClick={async()=>{const res = await AddStar(game.games_collection.id);if(res) return setAnimation(true); else return alert('Você já favoritou este item.')}}>
+                                <StarDiv onClick={async()=>{await handleStarDiv()}}>
                                     <StarPng src={animation ? StarIcon : StarGrayIcon}/>
                                     {!animation && <StarP>Adicionar estrela</StarP>}
                                 </StarDiv>
