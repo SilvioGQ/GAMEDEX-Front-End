@@ -14,7 +14,7 @@ export default function Collectors() {
   const [pesquisar, setPesquisar] = useState('');
   const [colecionadores, setColecionadores] = useState('');
   const [pagination, setPagination] = useState({
-    limit: 1,
+    limit: 10,
     offset: 0
   })
   const [totalColecionadores, settotalColecionadores] = useState(0)
