@@ -7,6 +7,14 @@ export const Container = styled.div`
     background-color: ${Colors.Black};
     height: 98vh;
 `;
+export const ProfileImg = styled.div`
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50px;
+    align-self: center;
+`
 
 export const FlexRight = styled.div`
     display: flex;

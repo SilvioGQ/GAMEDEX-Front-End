@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Row } from '../../resource/globalsStyles'
-import { AnimationImg, ConsolesImg, Container, FlexLeft, FlexRight, Logo, Title } from './styles'
+import { AnimationImg, ConsolesImg, ProfileImg,Container, FlexLeft, FlexRight, Logo, Title } from './styles'
 import LogoImage from '../../assets/logo.png'
 import LoginAnimation from '../../assets/loginAnimation.png'
 import Consoles from '../../assets/consoles.png'
@@ -19,11 +19,17 @@ export default function Login () {
   const [email, setEmail] = useState('');
   const [nome, setNome] = useState('');
   const [senha,setSenha] = useState('');
+  const [image, setImage] = useState(null)
   const [page, setPage] = useState(1);
   const { height, width } = useWindowDimensions();
   const createUser = async()=>{
-    const user = await CreateUser(nome,email,senha);
-    console.log('user',user)
+    const created=await CreateUser(nome,email,senha,image);
+    if(!created) {
+      alert("Falhou")
+      return
+    }
+
+    const user = await LoginUser(email,senha);
     if(user){
       localStorage.setItem('token', user.token);
       localStorage.setItem('user',JSON.stringify(user));
@@ -79,6 +85,12 @@ export default function Login () {
         </>
         :
         <>
+        
+        <label htmlFor="avatar">
+        <ProfileImg style={{ backgroundImage: `url(${(image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
+        </label>
+		  	<input type="file" required name="avatar" id="avatar" defaultValue={image} onChange={(e) => setImage(e.target.files[0])} />
+        
         <div style={{marginVertical:50}}>
         <Input 
             placeholder="Nome"

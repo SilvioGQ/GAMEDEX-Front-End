@@ -44,9 +44,9 @@ export default function Profile() {
       <Header selected={'profile'} />
       <BackgroundLight>
         <CollectorMargin>
-			<label htmlFor="avatar">
-          	<ProfileImg style={{ backgroundImage: `url(${userState && userState.img && !image ? userState.img : (image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
-			</label>
+        <label htmlFor="avatar">
+              <ProfileImg style={{ backgroundImage: `url(${userState && userState.img && !image ? userState.img : (image ? URL.createObjectURL(image) : 'https://pbs.twimg.com/profile_images/978526727604387840/WcWvDE6W_400x400.jpg')})`}} />
+        </label>
 		  	<input type="file" required name="avatar" id="avatar" defaultValue={image} onChange={(e) => setImage(e.target.files[0])} />
 
             {editionName ? 

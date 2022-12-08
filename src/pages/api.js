@@ -3,15 +3,15 @@ import axios from "axios";
 //const BASE_API = "https://gamedex-api-teste.up.railway.app";
 const BASE_API = "http://localhost:3001";
 
-const token = localStorage.getItem('token')
 
-export async function CreateUser(name,email, password) {
+export async function CreateUser(name,email,password,img) {
     try {
-        const response = await axios.post(`${BASE_API}/users`, {
-            name:name,
-            email: email,
-            password: password
-        })
+        let formData = new FormData();
+        formData.append("name",name);
+        formData.append("email",email);
+        formData.append("password",password);
+        if(img) formData.append("img",img);
+        const response = await axios.post(`${BASE_API}/users`,formData)
         return response.data;
     } catch (error) {
         return null;
